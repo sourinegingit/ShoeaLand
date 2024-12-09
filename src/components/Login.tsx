@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { PiLockKeyBold } from "react-icons/pi";
 import { z } from "zod";
@@ -27,6 +27,23 @@ const Login = () => {
       "Password must contain at least one alphanumeric character or special symbol (!@#$)"
     );
 
+
+    useEffect(()=>{
+      const storedFailedAttempts = localStorage.getItem("failedAttempts");
+      const storedBlockedUntil = localStorage.getItem("blockedUntil");
+      
+    if (storedFailedAttempts) setFailedAttempts(Number(storedFailedAttempts));
+    if (storedBlockedUntil) setBlockedUntil(Number(storedBlockedUntil));
+console.log(Date.now() < Number(storedBlockedUntil))
+
+    if (Date.now() < Number(storedBlockedUntil)) {
+      setErrorMessage("You are blocked for 5 minutes. Please try again later.");
+    }
+    },[])
+
+
+
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -42,26 +59,34 @@ const Login = () => {
           }
           localStorage.setItem("failedAttempts", String(newFailedAttempts));
           return newFailedAttempts;
-       
         });
         setErrorMessage("The entered password is not correct.");
-      }else{
+      } else {
         setErrorMessage("Login successful!");
+        // Redirect to homepage (logic not implemented here)
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
         setErrorMessage(error.errors[0].message);
-      }    }
+      }
+    }
   };
   return (
     <div className="flex flex-col h-screen border-2 bg-gray-300">
       <div className="w-96 p-2 border-black h-screen mx-auto flex flex-col ">
-        <div className="text-[10rem]">📝</div>
+        <div className="flex justify-center items-center mt-28">
+          <div className="text-[10rem]  ">
+            <img
+              src="../../public/assets/shoea.png"
+              className="flex items-center justify-center"
+            />
+          </div>
+        </div>
         <h2 className="font-semibold mt-16 text-xl ">LOGIN TO YOUR ACCOUNT</h2>
 
         <form onSubmit={handleLogin}>
-          <div className="relative mt-8 flex items-center max-w-md mx-auto">
-            <MdEmail className="absolute left-3 text-gray-500" />
+          <div className="relative mt-8 flex flex-col items-center max-w-md mx-auto">
+            <MdEmail className="absolute text-lg left-3 mt-4 text-gray-500" />
             <input
               type="text"
               value={username}
@@ -71,8 +96,8 @@ const Login = () => {
             />
           </div>
 
-          <div className="relative mt-4 flex items-center max-w-md mx-auto">
-            <PiLockKeyBold className="absolute left-3 text-gray-500" />
+          <div className="relative mt-8 flex flex-col items-center max-w-md mx-auto">
+            <PiLockKeyBold className="absolute text-lg left-3 mt-4 text-gray-500" />
 
             <input
               type="password"
@@ -81,11 +106,23 @@ const Login = () => {
               placeholder="password..."
               className="pl-10 py-2 border border-gray-300 rounded-md w-full"
             />
+            {/* {errorMessage && <div className="text-red-500 mt-2">{errorMessage}</div>} */}
           </div>
 
-        <button type="submit" disabled={Date.now() < blockedUntil} className="rounded-full mt-44 text-xl bg-black text-white w-full p-2">Login</button>
-          {errorMessage && <div className="text-red-500 mt-2">{errorMessage}</div>}
-       
+          <button
+            type="submit"
+            disabled={Date.now() < blockedUntil}
+            className="rounded-full mt-36 text-xl bg-black text-white w-full p-2"
+          >
+            Login
+          </button>
+          <div className="flex gap-16 p-4 items-center">
+<p className="text-gray-400">dont have account yet</p>
+<h2>Register Now</h2>
+          </div>
+          {errorMessage && (
+            <div className="text-red-500 mt-2">{errorMessage}</div>
+          )}
         </form>
       </div>
     </div>
