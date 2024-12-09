@@ -4,7 +4,7 @@ import { PiLockKeyBold } from "react-icons/pi";
 const Login = () => {
   return (
     <div className="flex flex-col h-screen border-2 bg-gray-300">
-      <div className="w-96 p-2 border-black h-screen mx-auto flex flex-col bg-red-400">
+      <div className="w-96 p-2 border-black h-screen mx-auto flex flex-col ">
         <div className="text-[10rem]">📝</div>
         <h2 className="font-semibold mt-16 text-xl ">LOGIN TO YOUR ACCOUNT</h2>
 
