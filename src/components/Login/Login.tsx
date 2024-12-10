@@ -94,6 +94,9 @@ console.log(Date.now() < Number(storedBlockedUntil))
               placeholder="UserName..."
               className="pl-10 py-2 border border-gray-300 rounded-md w-full"
             />
+            {/* {errorMessage && errorMessage.includes(username) && (
+              <div className="text-red-500 mt-2">{errorMessage}</div>
+            )} */}
           </div>
 
           <div className="relative mt-8 flex flex-col items-center max-w-md mx-auto">

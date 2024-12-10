@@ -1,14 +1,16 @@
 import "./App.css";
-import Register from "./components/Login/Register";
-// import Container from "./components/Container";
 // import Login from "./components/Login/Login";
+import ResetPassword from "./components/Login/ResetPassword";
+// import Register from "./components/Login/Register";
+// import Container from "./components/Container";
 
 function App() {
   return (
     <div>
       {/* <Container /> */}
       {/* <Login/> */}
-      <Register/>
+      {/* <Register/> */}
+      <ResetPassword/>
     </div>
   );
 }
