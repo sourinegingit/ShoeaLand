@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { z } from "zod"; // Import Zod
-
-// Zod schema for validation
+import { z } from "zod"; 
+import { toast, ToastContainer } from "react-toastify"; 
+import 'react-toastify/dist/ReactToastify.css'; 
 const resetPasswordSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters."),
   repeatPassword: z.string().min(6, "Password must be at least 6 characters."),
@@ -18,6 +18,7 @@ const ResetPassword = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validate the inputs using Zod
     const validationResult = resetPasswordSchema.safeParse({
       password,
       repeatPassword,
@@ -25,33 +26,33 @@ const ResetPassword = () => {
 
     if (!validationResult.success) {
       const error = validationResult.error.errors[0];
-      setErrorMessage(error.message);
+      toast.error(error.message); // Show error toast
       return;
     }
 
     if (password !== repeatPassword) {
-      setErrorMessage("Passwords do not match.");
+      toast.error("Passwords do not match."); // Show error toast
       return;
     }
 
     setMessage("Password reset link has been sent to your email.");
-    setErrorMessage(''); 
+    setErrorMessage('');
+    toast.success("Password reset link has been sent to your email."); // Show success toast
   };
 
   return (
     <div className="flex flex-col h-screen border-2 bg-gray-300">
       <div className="w-96 p-2 border-black h-screen mx-auto flex flex-col ">
         <div className="flex justify-center items-center mt-28">
-          <div className="text-[10rem]  ">
+          <div className="text-[10rem]">
             <img
               src="../../public/assets/shoea.png"
               className="flex items-center justify-center"
             />
           </div>
         </div>
-        <h2 className="font-semibold mt-16 text-xl ">Reset Password</h2>
+        <h2 className="font-semibold mt-16 text-xl">Reset Password</h2>
         <form onSubmit={handleSubmit}>
-      
 
           {/* Password */}
           <div className="relative mt-8 flex flex-col items-center max-w-md mx-auto">
@@ -85,12 +86,11 @@ const ResetPassword = () => {
           >
             Reset
           </button>
-
-          {/* Display error or success messages */}
-          {errorMessage && <div className="mt-4 text-center text-red-500">{errorMessage}</div>}
-          {message && <div className="mt-4 text-center text-green-500">{message}</div>}
         </form>
       </div>
+
+      {/* Toast container to show toasts */}
+      <ToastContainer />
     </div>
   );
 };
