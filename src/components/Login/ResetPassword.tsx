@@ -18,20 +18,19 @@ const ResetPassword = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate the inputs using Zod
     const validationResult = resetPasswordSchema.safeParse({
       password,
       repeatPassword,
     });
 
     if (!validationResult.success) {
-      const error = validationResult.error.errors[0];
-      toast.error(error.message); // Show error toast
+      // const error = validationResult.error.errors[0];
+      toast.error("رمز عبور ها مظابقت ندارند"); 
       return;
     }
 
     if (password !== repeatPassword) {
-      toast.error("Passwords do not match."); // Show error toast
+      toast.error("Passwords do not match."); 
       return;
     }
 
@@ -89,7 +88,6 @@ const ResetPassword = () => {
         </form>
       </div>
 
-      {/* Toast container to show toasts */}
       <ToastContainer />
     </div>
   );
