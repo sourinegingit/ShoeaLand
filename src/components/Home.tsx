@@ -1,12 +1,4 @@
-import {
-  FaBell,
-  FaHeartBroken,
-  FaHome,
-  FaShoppingCart,
-  FaUserAlt,
-  FaWallet,
-} from "react-icons/fa";
-import { FaBasketShopping } from "react-icons/fa6";
+
 import BrandCard, { IBrandProps } from "./BrandCard.components";
 import ProductCard, { IProductProps } from "./ProductCard.components";
 import Search from "./Search.components";
