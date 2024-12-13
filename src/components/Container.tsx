@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import shoesImage from "../../public/assets/shoes.svg";
-import Loading from "./Loading";
+import Loading from "./onboarding/Loading";
 
 type OnboardingState = "loading" | "welcome" | "slide1" | "slide2" | "slide3";
 
