@@ -1,0 +1,129 @@
+{
+  
+      
+        "products": [
+          {
+            "id": 1,
+            "title": "adidas",
+            "price": 245,
+            "order": 0,
+            "size": [
+              42,
+              41,
+              40
+            ],
+            "color": [
+              "rose",
+              "emerald",
+              "yellow",
+              "gray"
+            ],
+            "brand": "adidas",
+            "images": "http://localhost:5154/products/adidas/1.webp"
+          },
+          {
+            "id": 44,
+            "title": "puma",
+            "price": 310,
+            "order": 0,
+            "size": [
+              44,
+              42,
+              40
+            ],
+            "color": [
+              "rose",
+              "emerald",
+              "teal",
+              "gray"
+            ],
+            "brand": "puma",
+            "images": "http://localhost:5154/products/puma/4.webp"
+          },
+          {
+            "id": 9,
+            "title": "asics",
+            "price": 56,
+            "order": 0,
+            "size": [
+              44,
+              42,
+              40
+            ],
+            "color": [
+              "rose",
+              "emerald",
+              "teal",
+              "gray"
+            ],
+            "brand": "asics",
+            "images": "http://localhost:5154/products/asics/1.webp"
+          },
+          {
+            "id": 3,
+            "title": "adidas",
+            "price": 110,
+            "order": 0,
+            "size": [
+              44,
+              43,
+              40
+            ],
+            "color": [
+              "red",
+              "emerald",
+              "teal",
+              "gray"
+            ],
+            "brand": "adidas",
+            "images": "http://localhost:5154/products/adidas/3.webp"
+          },
+          {
+            "id": 6,
+            "title": "adidas",
+            "price": 45,
+            "order": 0,
+            "size": [
+              44,
+              42,
+              40
+            ],
+            "color": [
+              "rose",
+              "emerald",
+              "teal",
+              "gray"
+            ],
+            "brand": "adidas",
+            "images": "http://localhost:5154/products/adidas/6.webp"
+          }
+        ],
+        "cart": [
+          {
+            "id": 1,
+            "title": "adidas",
+            "price": 245,
+            "order": 0,
+            "size": [
+              42,
+              41,
+              40
+            ],
+            "color": [
+              "rose",
+              "emerald",
+              "yellow",
+              "gray"
+            ],
+            "brand": "adidas",
+            "images": "http://localhost:5154/products/adidas/1.webp",
+            "sizeselect": 40,
+            "colorselect": "emerald",
+            "quantity": 2,
+            "totalPr": 490
+          }
+        ]
+      
+
+  
+  }

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { z } from "zod"; 
-import { toast, ToastContainer } from "react-toastify"; 
-import 'react-toastify/dist/ReactToastify.css'; 
 const resetPasswordSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters."),
   repeatPassword: z.string().min(6, "Password must be at least 6 characters."),
@@ -88,7 +86,6 @@ const ResetPassword = () => {
         </form>
       </div>
 
-      <ToastContainer />
     </div>
   );
 };

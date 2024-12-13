@@ -1,7 +1,8 @@
 import "./App.css";
 // import Login from "./components/Login/Login";
-import ResetPassword from "./components/Login/ResetPassword";
+// import ResetPassword from "./components/Login/ResetPassword";
 // import Register from "./components/Login/Register";
+import Home from "./components/Home";
 // import Container from "./components/Container";
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
       {/* <Container /> */}
       {/* <Login/> */}
       {/* <Register/> */}
-      <ResetPassword/>
+      {/* <ResetPassword/> */}
+      <Home/>
     </div>
   );
 }
