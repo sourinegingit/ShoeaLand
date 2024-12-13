@@ -1,11 +1,7 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "name": "NEGIN SOURI",
-        "email": "negin@gmail.com",
-        "password": "negin",
-        "wishlist": [
+  
+      
+        "products": [
           {
             "id": 1,
             "title": "adidas",
@@ -127,7 +123,7 @@
             "totalPr": 490
           }
         ]
-      }
-    ]
+      
+
   
   }

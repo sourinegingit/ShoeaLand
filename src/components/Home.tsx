@@ -4,6 +4,8 @@ import ProductCard, { IProductProps } from "./ProductCard.components";
 import Search from "./Search.components";
 import Footer from "./Footer.components";
 import Header from "./Header.components";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../api/api";
 
 const brand: IBrandProps[] = [
   {
@@ -48,34 +50,56 @@ const brand: IBrandProps[] = [
   },
 ];
 
-const products: IProductProps[] = [
-  {
-    id: 1,
-    productName: "Adidas Sneakers",
-    price: 3000,
-    image: "assets/products/adidas/7.webp",
-  },
-  {
-    id: 2,
-    productName: "Asics Running Shoes",
-    price: 3000,
-    image: "/assets/products/asics/2.webp",
-  },
-  {
-    id: 3,
-    productName: "rebok Sneakers",
-    price: 3000,
-    image: "assets/products/reebok/7.webp",
-  },
-  {
-    id: 4,
-    productName: "nike Running Shoes",
-    price: 3000,
-    image: "/assets/products/puma/2.webp",
-  },
-];
+// const products: IProductProps[] = [
+//   {
+//     id: 1,
+//     productName: "Adidas Sneakers",
+//     price: 3000,
+//     image: "assets/products/adidas/7.webp",
+//   },
+//   {
+//     id: 2,
+//     productName: "Asics Running Shoes",
+//     price: 3000,
+//     image: "/assets/products/asics/2.webp",
+//   },
+//   {
+//     id: 3,
+//     productName: "rebok Sneakers",
+//     price: 3000,
+//     image: "assets/products/reebok/7.webp",
+//   },
+//   {
+//     id: 4,
+//     productName: "nike Running Shoes",
+//     price: 3000,
+//     image: "/assets/products/puma/2.webp",
+//   },
+// ];
 
 const Home = () => {
+  const [products, setProducts] = useState<IProductProps[]>([]);  
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);  
+
+  const getProducts = async () => {
+    try {
+      const productsData = await fetchProducts();
+      console.log(productsData);
+      
+      setProducts(productsData);
+    } catch (error) {
+      setError("Error fetching products");
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getProducts();  
+  }, []);
+
+
+
   return (
     <div className="container px-4 text-base ">
       {/* Action Bar */}
@@ -141,20 +165,37 @@ const Home = () => {
       </div>
 
       {/* Products */}
-      <div
-        id="products"
-        className="flex  p-1 mt-2 flex-wrap items-center justify-between gap-1"
-      >
-        {products.map((item) => (
-          <ProductCard
-            key={item.id}
-            productName={item.productName}
-            price={item.price}
-            image={item.image}
-          />
-        ))}
+      <div id="products" className="flex p-1 mt-2 flex-wrap items-center justify-between gap-1">
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          products.length > 0 ? (
+            products.map((item) => (
+              <ProductCard
+                key={item.id}
+                productName={item.productName}
+                price={item.price}
+                image={item.image}
+              />
+            ))
+          ) : (
+            <div>No products available.</div>
+          )
+        )}
       </div>
 
+{/* {
+   products.map((item) => (
+    <ProductCard
+      key={item.id}
+      productName={item.productName}
+      price={item.price}
+      image={item.image}
+    />
+  ))
+} */}
       {/* footer Buttons */}
       <Footer />
     </div>
