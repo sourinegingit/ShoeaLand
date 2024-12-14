@@ -6,6 +6,7 @@ import Footer from "./Footer.components";
 import Header from "./Header.components";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../api/api";
+import Layout from "./layout/Layout";
 
 const brand: IBrandProps[] = [
   {
@@ -101,10 +102,11 @@ const Home = () => {
 
 
   return (
-    <div className="container px-4 text-base ">
+ <Layout>
+     <div className="container px-4 text-base ">
       {/* Action Bar */}
       <div className="py-4 flex justify-between  items-center">
-        <Header />
+        {/* <Header /> */}
       </div>
 
       {/* Search Bar */}
@@ -197,8 +199,9 @@ const Home = () => {
   ))
 } */}
       {/* footer Buttons */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
+ </Layout>
   );
 };
 
