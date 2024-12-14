@@ -3,7 +3,7 @@ import Container from "../Container";
 
 const Header = () => {
   return (
-    <div className="flex  sticky top-0 w-full bg-slate-200 gap-3 md:gap-0 lg:gap-96 z-30 shadow-sm  ">
+    <div className="  sticky top-0 w-full bg-slate-200 gap-3 md:gap-0 lg:gap-96 z-30 shadow-sm  ">
       <Container>
         <div className="flex items-center justify-between gap-64 p-2">
           <div className="flex gap-2 ">

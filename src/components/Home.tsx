@@ -1,12 +1,11 @@
 
 import BrandCard, { IBrandProps } from "./BrandCard.components";
-import ProductCard, { IProductProps } from "./ProductCard.components";
+import ProductCard, { IProductProps } from "./products/ProductCard";
 import Search from "./Search.components";
-import Footer from "./Footer.components";
-import Header from "./Header.components";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../api/api";
 import Layout from "./layout/Layout";
+import Container from "../Container";
 
 const brand: IBrandProps[] = [
   {
@@ -103,7 +102,9 @@ const Home = () => {
 
   return (
  <Layout>
-     <div className="container px-4 text-base ">
+<div className="p-2">
+<Container>
+   <div className="container p-8 text-base ">
       {/* Action Bar */}
       <div className="py-4 flex justify-between  items-center">
         {/* <Header /> */}
@@ -167,7 +168,7 @@ const Home = () => {
       </div>
 
       {/* Products */}
-      <div id="products" className="flex p-1 mt-2 flex-wrap items-center justify-between gap-1">
+      <div id="products" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {loading ? (
           <div>Loading...</div>
         ) : error ? (
@@ -201,6 +202,8 @@ const Home = () => {
       {/* footer Buttons */}
       {/* <Footer /> */}
     </div>
+   </Container>
+</div>
  </Layout>
   );
 };

@@ -6,7 +6,7 @@ import Container from "../Container"
 const Footer:React.FC = () => {
   return (
 <Container>
-<nav  className="bottom-0 left-0 w-full   flex justify-between gap-16 py-4">
+<nav  className="bottom-0 left-0 w-full  flex justify-between gap-16 py-4">
       <div className="text-center">
         <FaHome className="p-1 text-3xl text-gray-300" />
         <span className="text-sm text-gray-700">Home</span>

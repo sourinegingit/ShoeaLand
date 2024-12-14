@@ -10,13 +10,13 @@ export interface IProductProps {
 
 const ProductCard: FC<IProductProps> = ({ productName, price, image, id }): ReactElement => {
     return (
-      <div className="bg-white w-72 min-h-60 flex flex-col shadow-md  rounded-lg overflow-hidden mt-4">
+      <div className="bg-white mt-4 col-span-1 cursor-pointer border-[1.2px] border-slate-200 rounded-sm p-2 transition text-center text-sm hover:scale-105">
         {/* Product Image */}
-        <div className="flex justify-center border-2 border-b-gray-300 items-center  ">
+        <div className="flex flex-col items-center w-full gap-1">
           <img 
             src={image} 
             alt={productName} 
-            className="w-full h-48 object-cover "
+            className="w-full h-full object-contain "
           />
         </div>
         
