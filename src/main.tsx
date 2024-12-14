@@ -6,16 +6,14 @@ import Welcome from "./components/onboarding/Welcome.tsx";
 import Slide2 from "./components/onboarding/Slide2.tsx";
 import Slide1 from "./components/onboarding/Slide1.tsx";
 import Slide3 from "./components/onboarding/Slide3.tsx";
-import Home from "./components/Home.tsx";
 import ProductDetail from "./components/productDetail/ProductDetail.tsx";
+import Home from "./components/Home.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Loading />} />
       <Route path="/home" index element={<Home />} />
-
-      <Route path="/loading" element={<Loading />} />
       <Route path="/welcome" element={<Welcome />} />
       <Route path="/slide1" element={<Slide1 />} />
       <Route path="/slide2" element={<Slide2 />} />
@@ -24,4 +22,4 @@ createRoot(document.getElementById("root")!).render(
 
     </Routes>
   </BrowserRouter>
-);
+)

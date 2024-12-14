@@ -1,1 +1,6 @@
-export const API_URL="http://localhost:5154/products";
+import axios from "axios";
+
+export const Api=axios.create({
+    baseURL:"http://localhost:5154",
+});
+export default Api

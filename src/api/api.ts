@@ -1,9 +1,9 @@
-import axios from "axios";
-import { API_URL } from "./base";
+import Api from "./base";
+
 
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await Api.get("/products");
     console.log(response);
     
     return response.data;

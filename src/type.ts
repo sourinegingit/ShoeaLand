@@ -9,7 +9,7 @@ export interface Category {
     list: { src: string }[];
   };
   
-  export interface Product  {
+  export interface Products  {
     id: number;
     title: string;
     rate: string;
