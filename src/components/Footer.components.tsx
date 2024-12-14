@@ -1,10 +1,12 @@
 import React from "react"
 import { FaHome, FaShoppingCart, FaUser, FaWallet } from "react-icons/fa"
 import { FaBasketShopping } from "react-icons/fa6"
+import Container from "../Container"
 
 const Footer:React.FC = () => {
   return (
-    <nav id="action-nav" className="bottom-0 left-0 w-full border-t border-gray-300 flex justify-around py-4">
+<Container>
+<nav  className="bottom-0 left-0 w-full   flex justify-between gap-16 py-4">
       <div className="text-center">
         <FaHome className="p-1 text-3xl text-gray-300" />
         <span className="text-sm text-gray-700">Home</span>
@@ -26,6 +28,7 @@ const Footer:React.FC = () => {
         <span className="text-sm text-gray-700">User</span>
       </div>
     </nav>
+</Container>
   )
 }
 
