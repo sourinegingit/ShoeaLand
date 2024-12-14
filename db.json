@@ -1,6 +1,4 @@
 {
-  
-      
         "products": [
           {
             "id": 1,
@@ -19,7 +17,7 @@
               "gray"
             ],
             "brand": "adidas",
-            "images": "http://localhost:5154/products/adidas/1.webp"
+            "images": "https://s0.as-img.com/r/pic/481499/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
           },
           {
             "id": 44,
@@ -38,7 +36,7 @@
               "gray"
             ],
             "brand": "puma",
-            "images": "http://localhost:5154/products/puma/4.webp"
+            "images": "assets/products/adidas/1.webp"
           },
           {
             "id": 9,
@@ -57,7 +55,7 @@
               "gray"
             ],
             "brand": "asics",
-            "images": "http://localhost:5154/products/asics/1.webp"
+            "images": "assets/products/asics/1.webp"
           },
           {
             "id": 3,
@@ -76,7 +74,7 @@
               "gray"
             ],
             "brand": "adidas",
-            "images": "http://localhost:5154/products/adidas/3.webp"
+            "images": "assets/products/nike/3.webp"
           },
           {
             "id": 6,
@@ -95,7 +93,7 @@
               "gray"
             ],
             "brand": "adidas",
-            "images": "http://localhost:5154/products/adidas/6.webp"
+            "images": "assets/products/asics/3.webp"
           }
         ],
         "cart": [
@@ -116,14 +114,11 @@
               "gray"
             ],
             "brand": "adidas",
-            "images": "http://localhost:5154/products/adidas/1.webp",
+            "images": "assets/products/puma/3.webp",
             "sizeselect": 40,
             "colorselect": "emerald",
             "quantity": 2,
             "totalPr": 490
           }
         ]
-      
-
-  
   }
