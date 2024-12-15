@@ -3,6 +3,7 @@ import Container from "../../Container";
 import { useEffect, useState } from "react";
 import Api from "../../api/base";
 import SetColor from "../products/SetColor"; // Import SetColor
+import { BiHeart } from "react-icons/bi";
 
 export interface IProductDetail {
   images: string;
@@ -52,13 +53,18 @@ const ProductDetail = () => {
     <div className="p-4">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
+          <div >
             <img src={product.images.title.src} alt={product.title} />
+            
           </div>
           <div className="flex flex-col gap-1 text-slate-500 text-sm">
+            <div className="flex gap-64 items-center justify-between">
             <h2 className="text-3xl font-medium text-slate-700">{product.title}</h2>
+            <BiHeart className="z-40 text-4xl"/>
+            
+            </div>
             <div className="flex items-center gap-2">
-              ⭐⭐⭐⭐⭐⭐⭐
+              ⭐⭐⭐⭐
               <div>{product.rate} reviews</div>
             </div>
             <div className="text-justify mt-4">{product.title}</div>

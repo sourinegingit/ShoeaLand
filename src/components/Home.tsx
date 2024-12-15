@@ -139,7 +139,6 @@ navigate(`/productDetail/${id}`)
             <div id="most-popular" className="mt-6">
               <header>
                 <div
-                  id="header-title"
                   className="flex justify-between items-center mb-4"
                 >
                   <p id="popular-btn" className="font-medium text-lg">
