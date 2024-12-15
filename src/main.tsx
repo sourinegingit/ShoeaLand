@@ -8,6 +8,7 @@ import Slide1 from "./components/onboarding/Slide1.tsx";
 import Slide3 from "./components/onboarding/Slide3.tsx";
 import ProductDetail from "./components/productDetail/ProductDetail.tsx";
 import Home from "./components/Home.tsx";
+import BrandProducts from "./components/BrandProducts.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -18,6 +19,8 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/slide1" element={<Slide1 />} />
       <Route path="/slide2" element={<Slide2 />} />
       <Route path="slide3" element={<Slide3 />} />
+      <Route path="/products/:brand" element={<BrandProducts />} />
+
       <Route path="/productdetail" element={<ProductDetail />} />
 
     </Routes>
