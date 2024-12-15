@@ -103,6 +103,10 @@ const Home = () => {
     navigate(`/products/${brand}`);
   };
 
+  // productDetail
+  const handleProductClick=(id:number)=>{
+navigate(`/productDetail/${id}`)
+  }
   return (
     <Layout>
       <div className="p-2">
@@ -190,6 +194,8 @@ const Home = () => {
                   title={item.title}
                   price={item.price}
                   images={item.images.title.src}
+                  onClick={() => handleProductClick(item.id)}
+
                 />
                 ))
               ) : (

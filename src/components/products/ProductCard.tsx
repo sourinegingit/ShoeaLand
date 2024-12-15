@@ -5,12 +5,13 @@ export interface IProductProps {
   price: number;
   images: string;
   id: number;
+  onClick: () => void;
 }
 
 
-const ProductCard: FC<IProductProps> = ({ title, price, images, id }): ReactElement => {
+const ProductCard: FC<IProductProps> = ({ title, price, images, id ,onClick}): ReactElement => {
     return (
-      <div className="bg-white mt-4 col-span-1 cursor-pointer border-[1.2px] border-slate-200 rounded-sm p-2 transition text-center text-sm hover:scale-105">
+      <div onClick={onClick}  className="bg-white mt-4 col-span-1 cursor-pointer border-[1.2px] border-slate-200 rounded-sm p-2 transition text-center text-sm hover:scale-105">
         {/* Product Image */}
         <div className="flex flex-col items-center w-full gap-1">
           <img 

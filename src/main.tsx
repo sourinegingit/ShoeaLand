@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
       <Route path="slide3" element={<Slide3 />} />
       <Route path="/products/:brand" element={<BrandProducts />} />
 
-      <Route path="/productdetail" element={<ProductDetail />} />
+      <Route path="/productdetail/:id" element={<ProductDetail />} />
 
     </Routes>
   </BrowserRouter>

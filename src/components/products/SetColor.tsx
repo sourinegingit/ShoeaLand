@@ -1,18 +1,35 @@
+import React, { useState } from "react";
 
-const SetColor = () => {
-  return (
-    <div>
-      <div className="flex gap-4 items-center">
-        <span className="font-semibold">COLOR</span>
-<div className="h-7 w-7 rounded-full border-teal-300 flex items-center justify-center">
-
-</div>
-<div className="h-5 w-5 rounded-full border-[1.2px] border-slate-300 cursor-pointer">//map on color
-
-</div>
-      </div>
-    </div>
-  )
+interface ISetColorProps {
+  colors: string[]; 
+  onColorChange: (color: string) => void; 
 }
 
-export default SetColor
+const SetColor: React.FC<ISetColorProps> = ({ colors, onColorChange }) => {
+  const [selectedColor, setSelectedColor] = useState<string | null>(null); 
+
+  const handleColorClick = (color: string) => {
+    setSelectedColor(color); 
+    onColorChange(color); 
+  };
+
+  return (
+    <div className="flex gap-4 items-center">
+      <span className="font-semibold">Available Colors: </span>
+      <div className="flex gap-2">
+        {colors.map((color, index) => (
+          <div
+            key={index}
+            onClick={() => handleColorClick(color)}
+            className={`h-7 w-7 rounded-full cursor-pointer ${
+              selectedColor === color ? "border-4 border-teal-400" : "border"
+            }`}
+            style={{ backgroundColor: color }}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default SetColor;
