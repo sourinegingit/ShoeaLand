@@ -16,7 +16,7 @@ const BrandProducts = () => {
       try {
         setLoading(true);
         const response = await Api.get(`/products?brand=${brand}`); 
-        // console.log(response.data);
+        console.log(response.data);
         
         setProducts(response.data);
       } catch (error) {

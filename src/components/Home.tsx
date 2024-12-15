@@ -12,6 +12,7 @@ const brand: IBrandProps[] = [
     brandName: "nike",
     link: "link",
     image: "/assets/brand/nike.png",
+    
   },
   {
     brandName: "pume",
@@ -81,7 +82,9 @@ const Home = () => {
   const [products, setProducts] = useState<IProductProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
   const navigate = useNavigate();
+
   const getProducts = async () => {
     try {
       const productsData = await fetchProducts();
@@ -94,6 +97,7 @@ const Home = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     getProducts();
   }, []);
