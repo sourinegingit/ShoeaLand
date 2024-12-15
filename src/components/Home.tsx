@@ -193,7 +193,7 @@ const Home = () => {
                 />
                 ))
               ) : (
-                <div className="bg-gray-600" >No products available.</div>
+                <div >No products available.</div>
               )}
             </div>
             {/* 
