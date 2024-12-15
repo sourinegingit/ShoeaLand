@@ -3,6 +3,8 @@ import ProductCard, { IProductProps } from "./products/ProductCard";
 import Search from "./Search.components";
 import Layout from "./layout/Layout";
 import Container from "../Container";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../api/api";
 
 const brand: IBrandProps[] = [
   {
@@ -47,53 +49,53 @@ const brand: IBrandProps[] = [
   },
 ];
 
-const products: IProductProps[] = [
-  {
-    id: 1,
-    productName: "Adidas Sneakers",
-    price: 3000,
-    image: "assets/products/adidas/7.webp",
-  },
-  {
-    id: 2,
-    productName: "Asics Running Shoes",
-    price: 3000,
-    image: "/assets/products/asics/2.webp",
-  },
-  {
-    id: 3,
-    productName: "rebok Sneakers",
-    price: 3000,
-    image: "assets/products/reebok/7.webp",
-  },
-  {
-    id: 4,
-    productName: "nike Running Shoes",
-    price: 3000,
-    image: "/assets/products/puma/2.webp",
-  },
-];
+// const products: IProductProps[] = [
+//   {
+//     id: 1,
+//     productName: "Adidas Sneakers",
+//     price: 3000,
+//     image: "assets/products/adidas/7.webp",
+//   },
+//   {
+//     id: 2,
+//     productName: "Asics Running Shoes",
+//     price: 3000,
+//     image: "/assets/products/asics/2.webp",
+//   },
+//   {
+//     id: 3,
+//     productName: "rebok Sneakers",
+//     price: 3000,
+//     image: "assets/products/reebok/7.webp",
+//   },
+//   {
+//     id: 4,
+//     productName: "nike Running Shoes",
+//     price: 3000,
+//     image: "/assets/products/puma/2.webp",
+//   },
+// ];
 
 const Home = () => {
-  // const [products, setProducts] = useState<IProductProps[]>([]);  
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<string | null>(null);  
+  const [products, setProducts] = useState<IProductProps[]>([]);  
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);  
 
-  // const getProducts = async () => {
-  //   try {
-  //     const productsData = await fetchProducts();
-  //     console.log(productsData);
+  const getProducts = async () => {
+    try {
+      const productsData = await fetchProducts();
+      console.log(productsData);
       
-  //     setProducts(productsData);
-  //   } catch (error) {
-  //     setError("Error fetching products");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getProducts();  
-  // }, []);
+      setProducts(productsData);
+    } catch (error) {
+      setError("Error fetching products");
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getProducts();  
+  }, []);
 
 
 
@@ -167,7 +169,7 @@ const Home = () => {
       </div>
 
       {/* Products */}
-      {/* <div id="products" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+      <div id="products" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {loading ? (
           <div>Loading...</div>
         ) : error ? (
@@ -179,15 +181,15 @@ const Home = () => {
                 key={item.id}
                 productName={item.productName}
                 price={item.price}
-                image={item.images}
+                image={item.images.title.src}
               />
             ))
           ) : (
             <div>No products available.</div>
           )
         )}
-      </div> */}
-
+      </div>
+{/* 
 {
    products.map((item) => (
     <ProductCard
@@ -197,7 +199,7 @@ const Home = () => {
       image={item.image}
     />
   ))
-}
+} */}
       {/* footer Buttons */}
       {/* <Footer /> */}
     </div>
