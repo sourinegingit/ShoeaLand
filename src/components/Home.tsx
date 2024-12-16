@@ -1,11 +1,11 @@
 import BrandCard, { IBrandProps } from "./BrandCard.components";
 import ProductCard, { IProductProps } from "./products/ProductCard";
-import Search from "./Search.components";
 import Layout from "./layout/Layout";
 import Container from "../Container";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import Search from "./search/Search";
 
 const brand: IBrandProps[] = [
   {
