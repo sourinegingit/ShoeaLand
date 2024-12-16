@@ -103,7 +103,7 @@ const Home = () => {
         ? allProducts
         : allProducts.filter((product: any) => product.brand.toLowerCase() === brand.toLowerCase());
   
-      console.log('Filtered Products:', filteredProducts); 
+      // console.log('Filtered Products:', filteredProducts); 
   
       setProducts(filteredProducts);
     } catch (error) {

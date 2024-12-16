@@ -4,7 +4,7 @@ export interface IBrandProps {
   image: string;
   link: string;
   brandName: string;
-  onClick: () => void; // Update the type to handle function with no return
+  onClick: () => void; 
 }
 
 const BrandCard: FC<IBrandProps> = ({ image, brandName, onClick }): ReactElement => {
