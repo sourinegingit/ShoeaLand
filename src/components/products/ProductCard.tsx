@@ -1,12 +1,16 @@
 import { FC, ReactElement } from "react";
 
 export interface IProductProps {
+  id: number;
   title: string;
   price: number;
-  images: string;
-  id: number;
-  onClick: () => void;
+  images: {
+    title: {
+      src: string;
+    };
+  };
 }
+
 
 
 const ProductCard: FC<IProductProps> = ({ title, price, images, id ,onClick}): ReactElement => {

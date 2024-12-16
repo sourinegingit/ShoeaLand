@@ -1,7 +1,14 @@
 import { FaBell, FaHeartBroken } from "react-icons/fa";
 import Container from "../Container";
+import { useState } from "react";
+import { IProductProps } from "./products/ProductCard";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [favorites, setFavorites] = useState<IProductProps[]>(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
   return (
     <div className="  sticky top-0 w-full bg-slate-200 gap-3 md:gap-0 lg:gap-96 z-30 shadow-sm  ">
       <Container>
@@ -21,7 +28,10 @@ const Header = () => {
           </div>
 
           <div id="user-action" className="flex items-center gap-4">
+          <Link to="/favorites">
             <FaHeartBroken className="text-3xl" />
+            </Link>
+
             <a href="favoritePage.html" className="text-gray-700">
               <FaBell className="text-3xl" />
             </a>

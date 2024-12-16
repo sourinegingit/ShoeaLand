@@ -10,6 +10,7 @@ import ProductDetail from "./components/productDetail/ProductDetail.tsx";
 import Home from "./components/Home.tsx";
 import BrandProducts from "./components/BrandProducts.tsx";
 import SearchResults from "./components/search/SearchResults.tsx";
+import Favorites from "./components/favorites/Favorites.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/search/:query" element={<SearchResults />} />
 
       <Route path="/productdetail/:id" element={<ProductDetail />} />
+      <Route path="/favorites" element={<Favorites />} />
 
     </Routes>
   </BrowserRouter>

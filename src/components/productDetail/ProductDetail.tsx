@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import Api from "../../api/base";
 import SetColor from "../products/SetColor"; // Import SetColor
 import { BiHeart } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
+// Define the product interface
 export interface IProductDetail {
-  images: string;
+  id: number;
+  images: { title: { src: string } };
   title: string;
   price: string;
   rate: string;
@@ -21,7 +24,13 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<IProductDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null); // State for selected color
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const navigate = useNavigate();
+  
+  const [favorites, setFavorites] = useState<IProductDetail[]>(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
 
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -41,27 +50,43 @@ const ProductDetail = () => {
     }
   }, [id]);
 
+  const handleAddToFavorites = () => {
+    if (!product) return;
+
+    const isProductInFavorites = favorites.some((item) => item.id === product.id);
+    
+    if (isProductInFavorites) {
+      // Remove from favorites
+      const updatedFavorites = favorites.filter((item) => item.id !== product.id);
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } else {
+      // Add to favorites
+      const updatedFavorites = [...favorites, product];
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
+  };
+
   if (loading) return <div>Loading product details...</div>;
   if (error) return <div>{error}</div>;
   if (!product) return <div>Product not found.</div>;
-
-  const handleColorChange = (color: string) => {
-    setSelectedColor(color); // Update the selected color
-  };
 
   return (
     <div className="p-4">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div >
+          <div>
             <img src={product.images.title.src} alt={product.title} />
-            
           </div>
           <div className="flex flex-col gap-1 text-slate-500 text-sm">
             <div className="flex gap-64 items-center justify-between">
-            <h2 className="text-3xl font-medium text-slate-700">{product.title}</h2>
-            <BiHeart className="z-40 text-4xl"/>
-            
+              <h2 className="text-3xl font-medium text-slate-700">{product.title}</h2>
+              <BiHeart
+                className="z-40 text-4xl cursor-pointer"
+                onClick={handleAddToFavorites}
+                style={{ color: favorites.some((item) => item.id === product.id) ? 'red' : 'gray' }}
+              />
             </div>
             <div className="flex items-center gap-2">
               ⭐⭐⭐⭐
@@ -87,8 +112,7 @@ const ProductDetail = () => {
               </ul>
             </div>
 
-            {/* Pass the colors to SetColor component */}
-            <SetColor colors={product.color} onColorChange={handleColorChange} />
+            <SetColor colors={product.color} onColorChange={setSelectedColor} />
           </div>
         </div>
       </Container>

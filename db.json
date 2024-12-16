@@ -221,7 +221,7 @@
         {"id":"1", "text":"a cooment about 1","postId":"1"}
        ],   
         
-  "cart": [
+  "addtofavorite": [
           {
             "id": 1,
             "title": "adidas",
