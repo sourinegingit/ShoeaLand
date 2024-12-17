@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 // برگردون ولی چون اول کدوم یه فانکشن مینویسیم که نوعش دقیق مشخص نیست یعنی جنریک
 export function useApi<T>(fn: () => Promise<T>) {
   const [state, setState] = useState<T>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
-    setError(false);
+    setError(null);
     fn()
       .then((data) => {
         setState(data);
