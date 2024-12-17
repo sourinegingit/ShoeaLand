@@ -4,11 +4,13 @@ export interface IProductProps {
   id: number;
   title: string;
   price: number;
+  src:string;
   images: {
     title: {
       src: string;
     };
   };
+  onClick: () => void; 
 }
 
 

@@ -139,7 +139,7 @@ navigate(`/productDetail/${id}`)
   }
 
   const handleBrandFilterClick = (brandName: string) => {
-    setSelectedBrand(brandName); // Update the selected brand
+    setSelectedBrand(brandName); 
   };
   return (
     <Layout>
@@ -173,7 +173,7 @@ navigate(`/productDetail/${id}`)
                   <p id="popular-btn" className="font-medium text-lg">
                     Most Popular
                   </p>
-                  <p  className="text-blue-500 cursor-pointer">
+                  <p  onClick={() => navigate('/products/all')} className="text-blue-500 cursor-pointer">
                     See All
                   </p>
                 </div>

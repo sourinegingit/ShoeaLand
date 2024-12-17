@@ -6,7 +6,6 @@ import SetColor from "../products/SetColor"; // Import SetColor
 import { BiHeart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
-// Define the product interface
 export interface IProductDetail {
   id: number;
   images: { title: { src: string } };
