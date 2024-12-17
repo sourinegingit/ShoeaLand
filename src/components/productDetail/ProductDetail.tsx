@@ -2,9 +2,10 @@ import { useParams } from "react-router-dom";
 import Container from "../../Container";
 import { useEffect, useState } from "react";
 import Api from "../../api/base";
-import SetColor from "../products/SetColor"; // Import SetColor
+import SetColor from "../products/SetColor"; 
 import { BiHeart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import SetSize from "../products/SetSize";
 
 export interface IProductDetail {
   id: number;
@@ -24,6 +25,8 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null); // Track selected size
+
   const navigate = useNavigate();
   
   const [favorites, setFavorites] = useState<IProductDetail[]>(() => {
@@ -52,7 +55,7 @@ const ProductDetail = () => {
   const handleAddToFavorites = () => {
     if (!product) return;
 
-    const isProductInFavorites = favorites.some((item) => item.id === product.id);
+    const isProductInFavorites = favorites.find((item) => item.id === product.id);
     
     if (isProductInFavorites) {
       // Remove from favorites
@@ -103,12 +106,7 @@ const ProductDetail = () => {
             </div>
 
             <div>
-              <span className="font-semibold">Available Sizes: </span>
-              <ul className="ml-6 flex gap-4 text-lg">
-                {product.size.map((size, index) => (
-                  <li key={index}>{size}</li>
-                ))}
-              </ul>
+             <SetSize size={product.size} onSizeChange={setSelectedSize} />
             </div>
 
             <SetColor colors={product.color} onColorChange={setSelectedColor} />

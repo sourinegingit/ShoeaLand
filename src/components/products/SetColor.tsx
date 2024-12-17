@@ -22,7 +22,7 @@ const SetColor: React.FC<ISetColorProps> = ({ colors, onColorChange }) => {
             key={index}
             onClick={() => handleColorClick(color)}
             className={`h-7 w-7 rounded-full cursor-pointer ${
-              selectedColor === color ? "border-4 border-teal-400" : "border"
+              selectedColor === color ? "border-4 border-black" : "border"
             }`}
             style={{ backgroundColor: color }}
           ></div>

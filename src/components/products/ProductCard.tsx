@@ -21,7 +21,7 @@ const ProductCard: FC<IProductProps> = ({ title, price, images, id ,onClick}): R
         {/* Product Image */}
         <div className="flex flex-col items-center w-full gap-1">
           <img 
-            src={images} 
+            src={images}
             alt={title} 
             className="w-full h-full object-contain "
           />

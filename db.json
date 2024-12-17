@@ -29,7 +29,7 @@
               "title": "adidas مدل 6985 زیر پلاستیکی",
               "rate": "3.8",
               "price": "24500000",
-              "size": [42, 41, 40],
+              "size": ["42", "41", "40"],
               "color": ["rose", "emerald", "yellow", "gray"],
               "brand": "adidas",
               "images": {

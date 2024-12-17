@@ -12,43 +12,50 @@ const brand: IBrandProps[] = [
     brandName: "nike",
     link: "link",
     image: "/assets/brand/nike.png",
-    
+    onClick: () => { console.log("Nike clicked!"); }
   },
   {
-    brandName: "pume",
+    brandName: "puma", // Fixed typo here
     link: "link",
     image: "/assets/brand/puma.png",
+    onClick: () => { console.log("Puma clicked!"); }
   },
   {
-    brandName: "reebook",
+    brandName: "reebok",
     link: "link",
     image: "/assets/brand/reebok.png",
+    onClick: () => { console.log("Reebok clicked!"); }
   },
   {
     brandName: "converse",
     link: "link",
     image: "/assets/brand/converse.png",
+    onClick: () => { console.log("Converse clicked!"); }
   },
   {
     brandName: "adidas",
     link: "link",
     image: "/assets/brand/adidas.png",
+    onClick: () => { console.log("Adidas clicked!"); }
   },
   {
     brandName: "asics",
     link: "link",
     image: "/assets/brand/asics.png",
+    onClick: () => { console.log("Asics clicked!"); }
   },
   {
     brandName: "new balance",
     link: "link",
     image: "/assets/brand/newbalance.png",
+    onClick: () => { console.log("New Balance clicked!"); }
   },
   {
     brandName: "more...",
     link: "link",
     image: "/assets/brand/more.png",
-  },
+    onClick: () => { console.log("More clicked!"); }
+  }
 ];
 
 // const products: IProductProps[] = [
