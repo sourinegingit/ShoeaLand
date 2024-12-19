@@ -12,50 +12,66 @@ const brand: IBrandProps[] = [
     brandName: "nike",
     link: "link",
     image: "/assets/brand/nike.png",
-    onClick: () => { console.log("Nike clicked!"); }
+    onClick: () => {
+      console.log("Nike clicked!");
+    },
   },
   {
     brandName: "puma", // Fixed typo here
     link: "link",
     image: "/assets/brand/puma.png",
-    onClick: () => { console.log("Puma clicked!"); }
+    onClick: () => {
+      console.log("Puma clicked!");
+    },
   },
   {
     brandName: "reebok",
     link: "link",
     image: "/assets/brand/reebok.png",
-    onClick: () => { console.log("Reebok clicked!"); }
+    onClick: () => {
+      console.log("Reebok clicked!");
+    },
   },
   {
     brandName: "converse",
     link: "link",
     image: "/assets/brand/converse.png",
-    onClick: () => { console.log("Converse clicked!"); }
+    onClick: () => {
+      console.log("Converse clicked!");
+    },
   },
   {
     brandName: "adidas",
     link: "link",
     image: "/assets/brand/adidas.png",
-    onClick: () => { console.log("Adidas clicked!"); }
+    onClick: () => {
+      console.log("Adidas clicked!");
+    },
   },
   {
     brandName: "asics",
     link: "link",
     image: "/assets/brand/asics.png",
-    onClick: () => { console.log("Asics clicked!"); }
+    onClick: () => {
+      console.log("Asics clicked!");
+    },
   },
   {
     brandName: "new balance",
     link: "link",
     image: "/assets/brand/newbalance.png",
-    onClick: () => { console.log("New Balance clicked!"); }
+    onClick: () => {
+      console.log("New Balance clicked!");
+    },
   },
   {
     brandName: "more...",
     link: "link",
     image: "/assets/brand/more.png",
-    onClick: () => { console.log("More clicked!"); }
-  }
+    onClick: () => {
+      console.log("More clicked!");
+    },
+  },
 ];
 
 // const products: IProductProps[] = [
@@ -89,29 +105,28 @@ const Home = () => {
   const [products, setProducts] = useState<IProductProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedBrand, setSelectedBrand] = useState<string>("all"); 
-
-
-
+  const [selectedBrand, setSelectedBrand] = useState<string>("all");
 
   const navigate = useNavigate();
-
-
 
   const PopularFilterProducts = async (brand: string = "all") => {
     try {
       setLoading(true);
       setError(null);
-  
+
       const response = await Api.get("/products");
-      const allProducts = response.data || []; 
-  
-      const filteredProducts = brand === "all"
-        ? allProducts
-        : allProducts.filter((product: any) => product.brand.toLowerCase() === brand.toLowerCase());
-  
-      // console.log('Filtered Products:', filteredProducts); 
-  
+      const allProducts = response.data || [];
+
+      const filteredProducts =
+        brand === "all"
+          ? allProducts
+          : allProducts.filter(
+              (product: any) =>
+                product.brand.toLowerCase() === brand.toLowerCase()
+            );
+
+      // console.log('Filtered Products:', filteredProducts);
+
       setProducts(filteredProducts);
     } catch (error) {
       setError("Error fetching products");
@@ -120,33 +135,30 @@ const Home = () => {
       setLoading(false);
     }
   };
-  
-  
+
   useEffect(() => {
     const fetchData = async () => {
       PopularFilterProducts(selectedBrand);
     };
-  
+
     fetchData();
   }, [selectedBrand]);
-  
-  
 
   // filter brands
   const handleBrandClick = (brand: string) => {
     navigate(`/products/${brand}`);
   };
   useEffect(() => {
-    console.log('Products updated:', products); 
+    console.log("Products updated:", products);
   }, [products]);
 
   // productDetail
-  const handleProductClick=(id:number)=>{
-navigate(`/productDetail/${id}`)
-  }
+  const handleProductClick = (id: number) => {
+    navigate(`/productDetail/${id}`);
+  };
 
   const handleBrandFilterClick = (brandName: string) => {
-    setSelectedBrand(brandName); 
+    setSelectedBrand(brandName);
   };
   return (
     <Layout>
@@ -154,7 +166,7 @@ navigate(`/productDetail/${id}`)
         <Container>
           <div className="container p-8 text-base ">
             {/* Action Bar */}
-{/* header */}
+            {/* header */}
             {/* Search Bar */}
             <Search />
 
@@ -162,13 +174,11 @@ navigate(`/productDetail/${id}`)
             <div className="flex flex-wrap mt-4 items-center justify-between gap-1">
               {brand.map((item, index) => (
                 <BrandCard
-                onClick={() => handleBrandClick(item.brandName)} 
-
+                  onClick={() => handleBrandClick(item.brandName)}
                   key={index}
                   brandName={item.brandName}
                   image={item.image}
                   link={item.link}
-
                 />
               ))}
             </div>
@@ -180,7 +190,10 @@ navigate(`/productDetail/${id}`)
                   <p id="popular-btn" className="font-medium text-lg">
                     Most Popular
                   </p>
-                  <p  onClick={() => navigate('/products/all')} className="text-blue-500 cursor-pointer">
+                  <p
+                    onClick={() => navigate("/products/all")}
+                    className="text-blue-500 cursor-pointer"
+                  >
                     See All
                   </p>
                 </div>
@@ -188,7 +201,10 @@ navigate(`/productDetail/${id}`)
                   <button
                     className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
                     onClick={() => handleBrandClick("all")}
-                    style={{ backgroundColor: selectedBrand === "all" ? "#ddd" : "transparent" }}
+                    style={{
+                      backgroundColor:
+                        selectedBrand === "all" ? "#ddd" : "transparent",
+                    }}
                   >
                     All
                   </button>
@@ -198,7 +214,10 @@ navigate(`/productDetail/${id}`)
                       className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
                       onClick={() => handleBrandFilterClick(item.brandName)}
                       style={{
-                        backgroundColor: selectedBrand === item.brandName ? "#ddd" : "transparent",
+                        backgroundColor:
+                          selectedBrand === item.brandName
+                            ? "#ddd"
+                            : "transparent",
                       }}
                     >
                       {item.brandName}
@@ -220,16 +239,15 @@ navigate(`/productDetail/${id}`)
               ) : products.length > 0 ? (
                 products.map((item) => (
                   <ProductCard
-                  key={item.id}
-                  title={item.title}
-                  price={item.price}
-                  images={item.images.title.src}
-                  onClick={() => handleProductClick(item.id)}
-
-                />
+                    key={item.id}
+                    title={item.title}
+                    price={item.price}
+                    images={item.images.title.src}
+                    onClick={() => handleProductClick(item.id)}
+                  />
                 ))
               ) : (
-                <div >No products available.</div>
+                <div>No products available.</div>
               )}
             </div>
             {/* 
