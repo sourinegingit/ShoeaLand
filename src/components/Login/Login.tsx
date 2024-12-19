@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { PiLockKeyBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const Login = () => {
@@ -9,6 +10,8 @@ const Login = () => {
   const [failedAttempts, setFailedAttempts] = useState<number>(0); //نعداد نلاش ناموفق
   const [blockedUntil, setBlockedUntil] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const usernameSchema = z
     .string()
@@ -27,22 +30,18 @@ const Login = () => {
       "Password must contain at least one alphanumeric character or special symbol (!@#$)"
     );
 
+  useEffect(() => {
+    const storedFailedAttempts = localStorage.getItem("failedAttempts");
+    const storedBlockedUntil = localStorage.getItem("blockedUntil");
 
-    useEffect(()=>{
-      const storedFailedAttempts = localStorage.getItem("failedAttempts");
-      const storedBlockedUntil = localStorage.getItem("blockedUntil");
-      
     if (storedFailedAttempts) setFailedAttempts(Number(storedFailedAttempts));
     if (storedBlockedUntil) setBlockedUntil(Number(storedBlockedUntil));
-console.log(Date.now() < Number(storedBlockedUntil))
+    console.log(Date.now() < Number(storedBlockedUntil));
 
     if (Date.now() < Number(storedBlockedUntil)) {
       setErrorMessage("You are blocked for 5 minutes. Please try again later.");
     }
-    },[])
-
-
-
+  }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,16 +111,21 @@ console.log(Date.now() < Number(storedBlockedUntil))
             {/* {errorMessage && <div className="text-red-500 mt-2">{errorMessage}</div>} */}
           </div>
 
+<div>
+<h2 className="text-gray-500 mt-6 text-xl " onClick={() => navigate("/reset")}>reset password</h2>
+</div>
           <button
             type="submit"
             disabled={Date.now() < blockedUntil}
+            onClick={() => navigate("/home")}
             className="rounded-full mt-36 text-xl bg-black text-white w-full p-2"
           >
             Login
           </button>
           <div className="flex gap-16 p-4 items-center">
-<p className="text-gray-400">dont have account yet</p>
-<h2>Register Now</h2>
+            <p className="text-gray-400">dont have account yet</p>
+            <h2 onClick={() => navigate("/register")}>Register Now</h2>
+          
           </div>
           {errorMessage && (
             <div className="text-red-500 mt-2">{errorMessage}</div>

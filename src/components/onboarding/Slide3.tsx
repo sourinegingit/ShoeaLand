@@ -18,7 +18,7 @@ const Slide3 = () => {
         </p>
         <img src="../../public/assets/dash3.svg" alt="" className="w-36 mt-8" />
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/login")}
           className="mt-20  w-full p-2 rounded-full bg-black text-white text-lg"
         >
           Next

@@ -12,6 +12,9 @@ import BrandProducts from "./components/BrandProducts.tsx";
 import SearchResults from "./components/search/SearchResults.tsx";
 import Favorites from "./components/favorites/Favorites.tsx";
 import AllProducts from "./components/seeall/AllProducts.tsx";
+import Login from "./components/Login/Login.tsx";
+import Register from "./components/Login/Register.tsx";
+import ResetPassword from "./components/Login/ResetPassword.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -22,6 +25,10 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/slide1" element={<Slide1 />} />
       <Route path="/slide2" element={<Slide2 />} />
       <Route path="slide3" element={<Slide3 />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register/>} />
+      <Route path="/reset" element={<ResetPassword />} />
+
       <Route path="/products/:brand" element={<BrandProducts />} />
       <Route path="/search/:query" element={<SearchResults />} />
       <Route path="/products/all" element={<AllProducts />} />

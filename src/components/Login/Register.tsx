@@ -3,6 +3,7 @@ import { FaPhone, FaUserAlt } from "react-icons/fa";
 import { ImUsers } from "react-icons/im";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const Register = () => {
@@ -18,6 +19,7 @@ const Register = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate=useNavigate();
   // تعریف یک اسکیما کلی برای فرم
   const registerSchema = z.object({
     username: z
@@ -229,7 +231,7 @@ const Register = () => {
           {/* Login Link */}
           <div className="flex gap-16 p-4 items-center">
             <p className="text-gray-400">Don't have an account yet?</p>
-            <h2>Login Now</h2>
+            <h2  onClick={()=>navigate('/login')}>Login Now</h2>
           </div>
         </form>
       </div>
