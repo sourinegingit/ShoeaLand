@@ -14,6 +14,7 @@ export interface IProductDetail {
   title: string;
   price: string;
   rate: string;
+  description:string;
   category: string;
   brand: string;
   size: string[];
@@ -106,7 +107,7 @@ const ProductDetail = () => {
               <div>({product.rate} reviews)</div>
             </div>
             <div className="text-justify mt-4">{product.title}</div>
-            {/* <div className="text-justify mt-4">{product.description}</div> */}
+            <div className="text-justify mt-4">{product.description}</div>
 
             <div>
               <span className="font-semibold">
