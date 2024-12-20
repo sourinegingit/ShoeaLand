@@ -70,6 +70,7 @@ const Login = () => {
       }
     }
   };
+  
   return (
     <div className="flex flex-col h-screen border-2 bg-gray-300">
       <div className="w-96 p-2 border-black h-screen mx-auto flex flex-col ">
