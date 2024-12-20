@@ -14,14 +14,14 @@ const SetColor: React.FC<ISetColorProps> = ({ colors, onColorChange }) => {
   };
 
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex flex-col gap-4 ">
       <span className="font-semibold">Available Colors: </span>
-      <div className="flex gap-2">
+      <div className="ml-6 flex gap-4 text-lg">
         {colors.map((color, index) => (
           <div
             key={index}
             onClick={() => handleColorClick(color)}
-            className={`h-7 w-7 rounded-full cursor-pointer ${
+            className={`h-10 w-10 rounded-full cursor-pointer ${
               selectedColor === color ? "border-4 border-black" : "border"
             }`}
             style={{ backgroundColor: color }}

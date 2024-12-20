@@ -17,7 +17,7 @@ const SetSize: React.FC<ISetSizeProps> = ({ size, onSizeChange }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 ">
       <span className="font-semibold">Available Sizes: </span>
       <div className="ml-6 flex gap-4 text-lg">
         {size.map((sizeOption, index) => (
