@@ -1,30 +1,26 @@
-import Container from "../../Container";
-import Footer from "../Footer.components";
-import Search from "../search/Search";
-import ProductCard from "./ProductCard";
-
-export interface CartItem{
-  product:string[];
-  count:number;
-}
+import { useContext, useEffect } from "react";
+import { CartContext } from "../context/CartContext";
+import CartItemCard from "./CartItem";
 
 const Cart = () => {
-  return (
-    <Container>
-      <div>
-        <div className="flex items-center justify-between gap-6 p-3 ">
-          <div className="flex items-center justify-between gap-3">
-            <img src="./public/assets/shoea.png" className="w-6 object-cover"/>
-            <p className="text-2xl font-semibold text-black">My Cart</p>
-          </div>
-          <Search/>
-        </div>
+  const { cart, dispatch } = useContext(CartContext);
 
-        <ProductCard/> 
-      </div>
-     <Footer/>
-    </Container>
+  useEffect(() => {
+    // This will be handled by the CartProvider already, no need to fetch from API again
+    // But you can use this for any server-side synchronization
+  }, [dispatch]);
+
+  return (
+    <div>
+      <h2>My Cart</h2>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        cart.map((item) => (
+          <CartItemCard key={item.id} item={item} />
+        ))
+      )}
+    </div>
   );
 };
-
-export default Cart;
+export default Cart

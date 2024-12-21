@@ -1,12 +1,14 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Container from "../../Container";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Api from "../../api/base";
 import SetColor from "../products/SetColor";
 import { BiHeart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import SetSize from "../products/SetSize";
 import CartQuantity from "../cart/CartQuantity";
+import { CartContext } from "../context/CartContext";
+import { CartItem } from "../reducers/cart.reducer";
 
 export interface IProductDetail {
   id: number;
@@ -23,11 +25,16 @@ export interface IProductDetail {
 
 const ProductDetail = () => {
   const { id } = useParams();
+
+const{dispatch}=useContext(CartContext)
+
   const [product, setProduct] = useState<IProductDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null); // Track selected size
+
+  const [quantity, setQuantity] = useState<number>(1); 
 
   const navigate = useNavigate();
 
@@ -54,6 +61,8 @@ const ProductDetail = () => {
     }
   }, [id]);
 
+
+  
   const handleAddToFavorites = () => {
     if (!product) return;
 
@@ -80,6 +89,40 @@ const ProductDetail = () => {
   if (error) return <div>{error}</div>;
   if (!product) return <div>Product not found.</div>;
 
+
+
+
+  const handleAddToCart = async () => {
+    if (!product || !selectedColor || !selectedSize) return;
+  
+    const newCartItem: CartItem = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity,
+      size: selectedSize,
+      color: selectedColor,
+    };
+  
+    try {
+      // Add the new item to the cart via the API
+      await Api.post('/cart', newCartItem);
+  
+      // Fetch the updated cart from the API and update the state
+      const response = await Api.get('/cart'); // assuming you have a route to get cart items
+      const updatedCart: CartItem[] = response.data;
+  
+      // Update the cart context with the new cart items
+      dispatch({ type: 'ADD_ITEM', payload: newCartItem });
+      console.log('Item added to cart successfully');
+    } catch (error) {
+      console.error('Error adding item to cart', error);
+    }
+  };
+  
+ 
+
+  if (!product) return <div>Loading...</div>;
   return (
     <div className="p-4">
       <Container>
@@ -131,7 +174,10 @@ const ProductDetail = () => {
 
             <div className="flex items-center gap-6 ">
               <p className="text-2xl font-semibold text-black"> Quantity</p>
-              <CartQuantity />
+              <CartQuantity  value={quantity}
+                min={1}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+               />
             </div>
 
             <div className="flex items-center border-t-2  border-gray-300 justify-between mt-4">
@@ -140,12 +186,15 @@ const ProductDetail = () => {
               <p className="text-3xl text-black">$240.00</p>
             </div>
             <div>
-              <button
+             <Link to="/cart">
+             <button
+              onClick={handleAddToCart}
                 className="bg-black rounded-full
                  w-44 p-3 text-gray-100"
               >
                 Add To Cart
-              </button>
+              </button >
+             </Link>
             </div>
           </div>
           </div>

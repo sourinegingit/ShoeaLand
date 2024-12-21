@@ -1,250 +1,436 @@
 {
   "categories": [
     {
-      "id":"1","title":"adidas","label":"کفش"
+      "id": "1",
+      "title": "adidas",
+      "label": "کفش"
     },
     {
-      "id":"2","title":"asics","label":"صندل"
-    },{
-      "id":"3","title":"converse","label":"  تابستانه کفش"
-    },{
-      "id":"4","title":"newBalance","label":"  زمستانه کفش"
-   
-    },{
-      "id":"5","title":"nike","label":"  بهاره کفش"
-   
-    },{
-      "id":"6","title":"puma","label":"  حمام کفش"
-   
-    },{
-      "id":"7","title":"reebok","label":"دمپایی"
-   
+      "id": "2",
+      "title": "asics",
+      "label": "صندل"
+    },
+    {
+      "id": "3",
+      "title": "converse",
+      "label": "  تابستانه کفش"
+    },
+    {
+      "id": "4",
+      "title": "newBalance",
+      "label": "  زمستانه کفش"
+    },
+    {
+      "id": "5",
+      "title": "nike",
+      "label": "  بهاره کفش"
+    },
+    {
+      "id": "6",
+      "title": "puma",
+      "label": "  حمام کفش"
+    },
+    {
+      "id": "7",
+      "title": "reebok",
+      "label": "دمپایی"
     }
   ],
- 
-  "products": 
-          [
-            {
-              "id": 1,
-              "title": "adidas مدل 6985 زیر پلاستیکی",
-              "rate": "3.8",
-              "price": "24500000",
-              "size": ["42", "41", "40"],
-              "color": ["rose", "emerald", "yellow", "gray"],
-              "brand": "adidas",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/481499/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/481499/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 5,
-              "views": 100,
-              "category": "1"
-            },
-            {
-              "id": 2,
-              "title": "asics مدل Gel Nimbus",
-              "rate": "4.2",
-              "price": "28000000",
-              "size": [42, 43, 44],
-              "color": ["blue", "black", "silver"],
-              "brand": "asics",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/512344/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/512344/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 10,
-              "views": 250,
-              "category": "2"
-            },
-            {
-              "id": 3,
-              "title": "converse مدل Chuck Taylor",
-              "rate": "4.5",
-              "price": "20000000",
-              "size": [40, 41, 42],
-              "color": ["black", "white", "red"],
-              "brand": "converse",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/634259/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/634259/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 12,
-              "views": 180,
-              "category": "3"
-            },
-            {
-              "id": 4,
-              "title": "newBalance مدل 990v5",
-              "rate": "4.6",
-              "price": "27000000",
-              "size": [42, 43, 44],
-              "color": ["gray", "navy", "white"],
-              "brand": "newBalance",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/634410/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/634410/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 15,
-              "views": 300,
-              "category": "4"
-            },
-            {
-              "id": 5,
-              "title": "nike مدل Air Max 2023",
-              "rate": "4.8",
-              "price": "32000000",
-              "size": [43, 44, 45],
-              "color": ["black", "white", "red"],
-              "brand": "nike",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/723531/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/723531/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 20,
-              "views": 400,
-              "category": "5"
-            },
-            {
-              "id": 6,
-              "title": "puma مدل RS-X3",
-              "rate": "4.1",
-              "price": "18000000",
-              "size": [40, 41, 42],
-              "color": ["black", "blue", "white"],
-              "brand": "puma",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/478123/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/478123/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 7,
-              "views": 150,
-              "category": "6"
-            },
-            {
-              "id": 7,
-              "title": "reebok مدل Classic Leather",
-              "rate": "4.3",
-              "price": "20000000",
-              "size": [41, 42, 43],
-              "color": ["white", "blue", "red"],
-              "brand": "reebok",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/495013/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/495013/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 5,
-              "views": 100,
-              "category": "7"
-            },
-            {
-              "id": 8,
-              "title": "adidas مدل Ultra Boost",
-              "rate": "4.7",
-              "price": "35000000",
-              "size": [42, 43, 44],
-              "color": ["black", "gray", "white"],
-              "brand": "adidas",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/634258/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/634258/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 12,
-              "views": 300,
-              "category": "1"
-            },
-            {
-              "id": 9,
-              "title": "asics مدل GT-2000",
-              "rate": "4.4",
-              "price": "23000000",
-              "size": [43, 44, 45],
-              "color": ["blue", "red", "black"],
-              "brand": "asics",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/473832/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/473832/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 8,
-              "views": 220,
-              "category": "2"
-            },
-            {
-              "id": 10,
-              "title": "nike مدل ZoomX Vaporfly Next%",
-              "rate": "4.9",
-              "price": "40000000",
-              "size": [44, 45],
-              "color": ["white", "black", "blue"],
-              "brand": "nike",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/634745/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/634745/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 18,
-              "views": 500,
-              "category": "5"
-            },
-            {
-              "id": 11,
-              "title": "puma مدل Future Rider",
-              "rate": "4.0",
-              "price": "19000000",
-              "size": [40, 41, 42],
-              "color": ["black", "blue", "green"],
-              "brand": "puma",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/473372/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/473372/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 9,
-              "views": 170,
-              "category": "6"
-            },
-            {
-              "id": 12,
-              "title": "reebok مدل Zig Kinetica",
-              "rate": "4.1",
-              "price": "21000000",
-              "size": [41, 42, 43],
-              "color": ["gray", "black", "blue"],
-              "brand": "reebok",
-              "images": {
-                "title": { "src": "https://s0.as-img.com/r/pic/514209/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" },
-                "list": [{ "src": "https://s0.as-img.com/r/pic/514209/1500/1500/side.jpg?bg=f5f5f5&u=1537765639" }]
-              },
-              "discount": 11,
-              "views": 210,
-              "category": "7"
-            }
-          ],
-       "comments":[
-        {"id":"1", "text":"a cooment about 1","postId":"1"}
-       ],   
-        
-  "addtofavorite": [
+  "products": [
+    {
+      "id": "1",
+      "title": "adidas مدل 6985 زیر پلاستیکی",
+      "rate": "3.8",
+      "price": "24500000",
+      "size": [
+        "42",
+        "41",
+        "40"
+      ],
+      "color": [
+        "rose",
+        "emerald",
+        "yellow",
+        "gray"
+      ],
+      "brand": "adidas",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/481499/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
           {
-            "id": 1,
-            "title": "adidas",
-            "price": 245,
-            "order": 0,
-            "size": [
-              42,
-              41,
-              40
-            ],
-            "color": [
-              "rose",
-              "emerald",
-              "yellow",
-              "gray"
-            ],
-            "brand": "adidas",
-            "images": "assets/products/puma/3.webp",
-            "sizeselect": 40,
-            "colorselect": "emerald",
-            "quantity": 2,
-            "totalPr": 490
+            "src": "https://s0.as-img.com/r/pic/481499/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
           }
-        ],
-        "cart": []
-  }
+        ]
+      },
+      "discount": 5,
+      "views": 100,
+      "category": "1"
+    },
+    {
+      "id": "2",
+      "title": "asics مدل Gel Nimbus",
+      "rate": "4.2",
+      "price": "28000000",
+      "size": [
+        42,
+        43,
+        44
+      ],
+      "color": [
+        "blue",
+        "black",
+        "silver"
+      ],
+      "brand": "asics",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/512344/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/512344/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 10,
+      "views": 250,
+      "category": "2"
+    },
+    {
+      "id": "3",
+      "title": "converse مدل Chuck Taylor",
+      "rate": "4.5",
+      "price": "20000000",
+      "size": [
+        40,
+        41,
+        42
+      ],
+      "color": [
+        "black",
+        "white",
+        "red"
+      ],
+      "brand": "converse",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/634259/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/634259/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 12,
+      "views": 180,
+      "category": "3"
+    },
+    {
+      "id": "4",
+      "title": "newBalance مدل 990v5",
+      "rate": "4.6",
+      "price": "27000000",
+      "size": [
+        42,
+        43,
+        44
+      ],
+      "color": [
+        "gray",
+        "navy",
+        "white"
+      ],
+      "brand": "newBalance",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/634410/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/634410/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 15,
+      "views": 300,
+      "category": "4"
+    },
+    {
+      "id": "5",
+      "title": "nike مدل Air Max 2023",
+      "rate": "4.8",
+      "price": "32000000",
+      "size": [
+        43,
+        44,
+        45
+      ],
+      "color": [
+        "black",
+        "white",
+        "red"
+      ],
+      "brand": "nike",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/723531/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/723531/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 20,
+      "views": 400,
+      "category": "5"
+    },
+    {
+      "id": "6",
+      "title": "puma مدل RS-X3",
+      "rate": "4.1",
+      "price": "18000000",
+      "size": [
+        40,
+        41,
+        42
+      ],
+      "color": [
+        "black",
+        "blue",
+        "white"
+      ],
+      "brand": "puma",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/478123/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/478123/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 7,
+      "views": 150,
+      "category": "6"
+    },
+    {
+      "id": "7",
+      "title": "reebok مدل Classic Leather",
+      "rate": "4.3",
+      "price": "20000000",
+      "size": [
+        41,
+        42,
+        43
+      ],
+      "color": [
+        "white",
+        "blue",
+        "red"
+      ],
+      "brand": "reebok",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/495013/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/495013/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 5,
+      "views": 100,
+      "category": "7"
+    },
+    {
+      "id": "8",
+      "title": "adidas مدل Ultra Boost",
+      "rate": "4.7",
+      "price": "35000000",
+      "size": [
+        42,
+        43,
+        44
+      ],
+      "color": [
+        "black",
+        "gray",
+        "white"
+      ],
+      "brand": "adidas",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/634258/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/634258/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 12,
+      "views": 300,
+      "category": "1"
+    },
+    {
+      "id": "9",
+      "title": "asics مدل GT-2000",
+      "rate": "4.4",
+      "price": "23000000",
+      "size": [
+        43,
+        44,
+        45
+      ],
+      "color": [
+        "blue",
+        "red",
+        "black"
+      ],
+      "brand": "asics",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/473832/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/473832/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 8,
+      "views": 220,
+      "category": "2"
+    },
+    {
+      "id": "10",
+      "title": "nike مدل ZoomX Vaporfly Next%",
+      "rate": "4.9",
+      "price": "40000000",
+      "size": [
+        44,
+        45
+      ],
+      "color": [
+        "white",
+        "black",
+        "blue"
+      ],
+      "brand": "nike",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/634745/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/634745/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 18,
+      "views": 500,
+      "category": "5"
+    },
+    {
+      "id": "11",
+      "title": "puma مدل Future Rider",
+      "rate": "4.0",
+      "price": "19000000",
+      "size": [
+        40,
+        41,
+        42
+      ],
+      "color": [
+        "black",
+        "blue",
+        "green"
+      ],
+      "brand": "puma",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/473372/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/473372/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 9,
+      "views": 170,
+      "category": "6"
+    },
+    {
+      "id": "12",
+      "title": "reebok مدل Zig Kinetica",
+      "rate": "4.1",
+      "price": "21000000",
+      "size": [
+        41,
+        42,
+        43
+      ],
+      "color": [
+        "gray",
+        "black",
+        "blue"
+      ],
+      "brand": "reebok",
+      "images": {
+        "title": {
+          "src": "https://s0.as-img.com/r/pic/514209/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+        },
+        "list": [
+          {
+            "src": "https://s0.as-img.com/r/pic/514209/1500/1500/side.jpg?bg=f5f5f5&u=1537765639"
+          }
+        ]
+      },
+      "discount": 11,
+      "views": 210,
+      "category": "7"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a cooment about 1",
+      "postId": "1"
+    }
+  ],
+  "addtofavorite": [
+    {
+      "id": "1",
+      "title": "adidas",
+      "price": 245,
+      "order": 0,
+      "size": [
+        42,
+        41,
+        40
+      ],
+      "color": [
+        "rose",
+        "emerald",
+        "yellow",
+        "gray"
+      ],
+      "brand": "adidas",
+      "images": "assets/products/puma/3.webp",
+      "sizeselect": 40,
+      "colorselect": "emerald",
+      "quantity": 2,
+      "totalPr": 490
+    }
+  ],
+  "cart": [
+
+  ]
+}
