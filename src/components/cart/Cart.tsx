@@ -1,6 +1,12 @@
 import Container from "../../Container";
+import Footer from "../Footer.components";
 import Search from "../search/Search";
 import ProductCard from "./ProductCard";
+
+export interface CartItem{
+  product:string[];
+  count:number;
+}
 
 const Cart = () => {
   return (
@@ -14,8 +20,9 @@ const Cart = () => {
           <Search/>
         </div>
 
-        <ProductCard/>
+        <ProductCard/> 
       </div>
+     <Footer/>
     </Container>
   );
 };
