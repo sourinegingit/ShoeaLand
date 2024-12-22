@@ -96,7 +96,7 @@ const{dispatch}=useContext(CartContext)
     if (!product || !selectedColor || !selectedSize) return;
   
     const newCartItem: CartItem = {
-      id: product.id,
+      productId:product.id,
       title: product.title,
       price: product.price,
       quantity,
@@ -105,24 +105,49 @@ const{dispatch}=useContext(CartContext)
     };
   
     try {
-      // Add the new item to the cart via the API
-      await Api.post('/cart', newCartItem);
+      // Check if the product already exists in the cart in the backend
+      const response = await Api.get(`/cart?size=${selectedSize}&color=${selectedColor}&productId=${product.id}`); // Get cart items from the API
+      // const cartItems: CartItem[] = response.data;
   
-      // Fetch the updated cart from the API and update the state
-      const response = await Api.get('/cart'); // assuming you have a route to get cart items
-      const updatedCart: CartItem[] = response.data;
+      const existingCartItem = response.data[0]
   
-      // Update the cart context with the new cart items
-      dispatch({ type: 'ADD_ITEM', payload: newCartItem });
+      console.log('data',response.data);
+      
+      if (existingCartItem) {
+        // Update the existing item in the cart (increment quantity)
+        const updatedCartItem = {
+          ...existingCartItem,
+          quantity: existingCartItem.quantity + quantity,
+        };
+  
+        // Update the backend cart
+        await Api.put(`/cart/${existingCartItem.id}`, updatedCartItem); // Update item in the cart
+  
+        // Dispatch the update action to update the state and localStorage
+        dispatch({ type: "UPDATE_ITEM", payload: updatedCartItem });
+      } else {
+        // Add new item to the cart (backend and localStorage)
+        await Api.post('/cart', newCartItem); // Add the item to the backend cart
+        dispatch({ type: "ADD_ITEM", payload: newCartItem });
+      }
+  
       console.log('Item added to cart successfully');
     } catch (error) {
       console.error('Error adding item to cart', error);
     }
   };
   
+  
  
 
   if (!product) return <div>Loading...</div>;
+
+  // Calculate the total price
+  const totalPrice = product
+    ? parseFloat(product.price) * quantity
+    : 0;
+
+  
   return (
     <div className="p-4">
       <Container>
@@ -182,8 +207,8 @@ const{dispatch}=useContext(CartContext)
 
             <div className="flex items-center border-t-2  border-gray-300 justify-between mt-4">
             <div className="flex mb-2 flex-col">
-              <p className="text-gray-500 font-lg text-start">totalPrice</p>
-              <p className="text-3xl text-black">$240.00</p>
+              <p className="text-black font-semibold text-4xl text-start">{totalPrice.toFixed()}</p>
+              
             </div>
             <div>
              <Link to="/cart">

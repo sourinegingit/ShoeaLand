@@ -12,7 +12,7 @@ const SearchResults = () => {
     useEffect(() => {
       const fetchSearchResults = async () => {
         try {
-          const response = await Api.get(`/products/search?q=${query}`);
+          const response = await Api.get(`/products?title_like=${query}`);
           setProducts(response.data);
         } catch (error) {
           setError("Error fetching search results");

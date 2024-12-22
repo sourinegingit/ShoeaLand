@@ -1,14 +1,12 @@
-import { useContext, useEffect } from "react";
+// Cart.tsx
+import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CartItemCard from "./CartItem";
 
 const Cart = () => {
-  const { cart, dispatch } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
-  useEffect(() => {
-    // This will be handled by the CartProvider already, no need to fetch from API again
-    // But you can use this for any server-side synchronization
-  }, [dispatch]);
+  const totalPrice = cart.reduce((acc, item) => acc + parseFloat(item.price) * item.quantity, 0);
 
   return (
     <div>
@@ -20,7 +18,10 @@ const Cart = () => {
           <CartItemCard key={item.id} item={item} />
         ))
       )}
+      <div className="flex justify-end mt-4">
+        <p className="text-2xl font-semibold">Total: ${totalPrice}</p>
+      </div>
     </div>
   );
 };
-export default Cart
+export default Cart;

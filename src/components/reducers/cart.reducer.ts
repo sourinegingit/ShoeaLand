@@ -1,5 +1,6 @@
 export interface CartItem {
-    id: number;
+  productId:number;
+    id?: number;
     title: string;
     price: string;
     quantity: number;
@@ -14,8 +15,8 @@ export  type CartAction =
   
 
  export const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
-    
-    switch (action.type) {
+
+  switch (action.type) {
       case "ADD_ITEM":
         return  [...state, action.payload];
     

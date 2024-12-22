@@ -16,9 +16,12 @@ import Login from "./components/Login/Login.tsx";
 import Register from "./components/Login/Register.tsx";
 import ResetPassword from "./components/Login/ResetPassword.tsx";
 import Cart from "./components/cart/Cart.tsx";
+import CartProvider from "./components/context/CartContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <CartProvider>
+
+ <BrowserRouter>
     <Routes>
       <Route path="/" element={<Loading />} />
       <Route path="/home" index element={<Home />} />
@@ -40,4 +43,5 @@ createRoot(document.getElementById("root")!).render(
 
     </Routes>
   </BrowserRouter>
+  </CartProvider>
 )

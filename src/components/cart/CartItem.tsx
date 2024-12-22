@@ -1,3 +1,4 @@
+// CartItemCard.tsx
 import { RiDeleteBin6Line } from "react-icons/ri";
 import CartQuantity from "./CartQuantity";
 import { useContext, useState } from "react";
@@ -5,8 +6,8 @@ import { CartContext } from "../context/CartContext";
 import { CartItem } from "../reducers/cart.reducer";
 
 const CartItemCard = ({ item }: { item: CartItem }) => {
-  const [quantity, setQuantity] = useState<number>(item.quantity); // Initialize with the item's quantity
   const { dispatch } = useContext(CartContext);
+  const [quantity, setQuantity] = useState<number>(item.quantity);
 
   const handleDelete = () => {
     dispatch({ type: "REMOVE_ITEM", payload: item.id });
@@ -34,7 +35,7 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="font-semibold text-black">{item.price}</p>
+              <p className="font-semibold text-black">${(parseFloat(item.price) * quantity).toFixed(2)}</p>
               <CartQuantity
                 value={quantity}
                 min={1}

@@ -4,19 +4,23 @@ import { CartAction, CartItem, cartReducer } from "../reducers/cart.reducer";
 export const CartContext = createContext<{
   cart: CartItem[];
   dispatch: React.Dispatch<CartAction>;
-}>( {
+}>({
   cart: [],
   dispatch: () => {},
 });
 
 function CartProvider({ children }: PropsWithChildren) {
-  const [cart, dispatch] = useReducer(cartReducer, [], (initialState) => {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : initialState;
-  });
+  // Initialize cart state from localStorage
+  const storedCart = localStorage.getItem("cart");
+  const initialCart = storedCart ? JSON.parse(storedCart) : [];
 
+  const [cart, dispatch] = useReducer(cartReducer, initialCart);
+
+  // Sync cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   }, [cart]);
 
   return (

@@ -431,6 +431,39 @@
     }
   ],
   "cart": [
-
+    {
+      "title": "asics مدل Gel Nimbus",
+      "price": "28000000",
+      "quantity": 3,
+      "size": 43,
+      "color": "blue",
+      "id": 1
+    },
+    {
+      "title": "asics مدل Gel Nimbus",
+      "price": "28000000",
+      "quantity": 4,
+      "size": 43,
+      "color": "blue",
+      "id": 2
+    },
+    {
+      "productId": "6",
+      "title": "puma مدل RS-X3",
+      "price": "18000000",
+      "quantity": 3,
+      "size": 42,
+      "color": "blue",
+      "id": 3
+    },
+    {
+      "productId": "1",
+      "title": "adidas مدل 6985 زیر پلاستیکی",
+      "price": "24500000",
+      "quantity": 13,
+      "size": "41",
+      "color": "yellow",
+      "id": 4
+    }
   ]
 }
