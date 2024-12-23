@@ -7,27 +7,27 @@ import { Link } from "react-router-dom"
 const Footer:React.FC = () => {
   return (
 <Container>
-<nav  className="bottom-0 left-0 w-full fixed flex justify-between gap-16 py-4">
+<nav  className="bottom-0 left-0 w-full fixed flex justify-evenly bg-gray-300 gap-16 py-4">
       <div className="text-center">
-        <FaHome className="p-1 text-3xl text-gray-300" />
+        <FaHome className="p-1 text-3xl text-gray-600" />
         <span className="text-sm text-gray-700">Home</span>
       </div>
       <div className="text-center">
-      <FaBasketShopping className="p-1 text-3xl text-gray-300" />
+      <FaBasketShopping className="p-1 text-3xl text-gray-600" />
         <Link to="/cart">
-        <span className="text-sm text-gray-700" >Cart</span>
+        <span className="text-sm text-gray-600" >Cart</span>
         </Link>
       </div>
       <div className="text-center">
-        <FaShoppingCart className="p-1 text-3xl text-gray-300" />
+        <FaShoppingCart className="p-1 text-3xl text-gray-600" />
         <span className="text-sm text-gray-700">Orders</span>
       </div>
       <div className="text-center">
-        <FaWallet className="p-1 text-3xl text-gray-300" />
+        <FaWallet className="p-1 text-3xl text-gray-600" />
         <span className="text-sm text-gray-700">Wallet</span>
       </div>
       <div className="text-center">
-        <FaUser className="p-1 text-3xl text-gray-300" />
+        <FaUser className="p-1 text-3xl text-gray-600" />
         <span className="text-sm text-gray-700">User</span>
       </div>
     </nav>

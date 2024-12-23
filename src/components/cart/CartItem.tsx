@@ -4,6 +4,7 @@ import CartQuantity from "./CartQuantity";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { CartItem } from "../reducers/cart.reducer";
+import Footer from "../Footer.components";
 
 const CartItemCard = ({ item }: { item: CartItem }) => {
   const { dispatch } = useContext(CartContext);
@@ -34,8 +35,8 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
               <p className="text-sm">{item.size}</p>
             </div>
 
-            <div className="flex items-center justify-between">
-              <p className="font-semibold text-black">${(parseFloat(item.price) * quantity).toFixed(2)}</p>
+            <div className="flex  items-center justify-between">
+              <p className="font-semibold  text-black">${(parseFloat(item.price) * quantity)}</p>
               <CartQuantity
                 value={quantity}
                 min={1}
@@ -52,6 +53,7 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
           <RiDeleteBin6Line className="text-4xl mt-3 p-1" onClick={handleDelete} />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

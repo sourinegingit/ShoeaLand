@@ -1,3 +1,4 @@
+import { CartItem } from "../components/reducers/cart.reducer";
 import Api from "./base";
 
 
@@ -24,3 +25,16 @@ export const fetchProductsByBrand = async (brand?: string) => {
 };
 
 
+export const updateCartItem = async (cartItem: CartItem) => {
+  try {
+    const response = await Api.put(`/cart/${cartItem.id}`, {
+      quantity: cartItem.quantity,
+      size: cartItem.size,
+      color: cartItem.color,
+    });
+    return response.data;  }
+    catch (error) {
+      console.error('Error updating cart item:', error);
+      throw error;
+    }
+};

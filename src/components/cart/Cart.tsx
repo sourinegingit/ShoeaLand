@@ -18,8 +18,9 @@ const Cart = () => {
           <CartItemCard key={item.id} item={item} />
         ))
       )}
-      <div className="flex justify-end mt-4">
+      <div className="flex items-center justify-between p-2 gap-16 w-full h-28 bg-gray-300 mt-4 fixed bottom-20 right-0">
         <p className="text-2xl font-semibold">Total: ${totalPrice}</p>
+        <button className="w-56 bg-black text-white font-semibold rounded-full p-2 text-xl">check out</button>
       </div>
     </div>
   );
