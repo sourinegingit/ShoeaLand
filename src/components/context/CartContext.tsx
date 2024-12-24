@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useReducer, useEffect } from "react";
+import React, { createContext, PropsWithChildren, useReducer } from "react";
 import { CartAction, CartItem, cartReducer } from "../reducers/cart.reducer";
 
 export const CartContext = createContext<{
@@ -11,17 +11,16 @@ export const CartContext = createContext<{
 
 function CartProvider({ children }: PropsWithChildren) {
   // Initialize cart state from localStorage
-  const storedCart = localStorage.getItem("cart");
-  const initialCart = storedCart ? JSON.parse(storedCart) : [];
-
-  const [cart, dispatch] = useReducer(cartReducer, initialCart);
+  // const storedCart = localStorage.getItem("cart");
+  // const initialCart = storedCart ? JSON.parse(storedCart) : [];
+  const [cart, dispatch] = useReducer(cartReducer,[]);
 
   // Sync cart to localStorage whenever it changes
-  useEffect(() => {
-    if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  }, [cart]);
+  // useEffect(() => {
+  //   if (cart.length > 0) {
+  //     localStorage.setItem("cart", JSON.stringify(cart));
+  //   }
+  // }, [cart]);
 
   return (
     <CartContext.Provider value={{ cart, dispatch }}>

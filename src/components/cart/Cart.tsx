@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CartItemCard from "./CartItem";
+import Footer from "../Footer.components";
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
@@ -22,6 +23,7 @@ const Cart = () => {
         <p className="text-2xl font-semibold">Total: ${totalPrice}</p>
         <button className="w-56 bg-black text-white font-semibold rounded-full p-2 text-xl">check out</button>
       </div>
+      <Footer/>
     </div>
   );
 };
