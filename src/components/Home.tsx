@@ -2,10 +2,11 @@ import BrandCard, { IBrandProps } from "./BrandCard.components";
 import ProductCard, { IProductProps } from "./products/ProductCard";
 import Layout from "./layout/Layout";
 import Container from "../Container";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "./search/Search";
-import Api from "../api/base";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProducts } from "../api/api";
 
 const brand: IBrandProps[] = [
   {
@@ -74,103 +75,46 @@ const brand: IBrandProps[] = [
   },
 ];
 
-// const products: IProductProps[] = [
-//   {
-//     id: 1,
-//     productName: "Adidas Sneakers",
-//     price: 3000,
-//     image: "assets/products/adidas/7.webp",
-//   },
-//   {
-//     id: 2,
-//     productName: "Asics Running Shoes",
-//     price: 3000,
-//     image: "/assets/products/asics/2.webp",
-//   },
-//   {
-//     id: 3,
-//     productName: "rebok Sneakers",
-//     price: 3000,
-//     image: "assets/products/reebok/7.webp",
-//   },
-//   {
-//     id: 4,
-//     productName: "nike Running Shoes",
-//     price: 3000,
-//     image: "/assets/products/puma/2.webp",
-//   },
-// ];
+export type ProductsResponse = IProductProps[];
 
 const Home = () => {
-  const [products, setProducts] = useState<IProductProps[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
-
   const navigate = useNavigate();
 
-  const PopularFilterProducts = async (brand: string = "all") => {
-    try {
-      setLoading(true);
-      setError(null);
+  // Fetch products using React Query with the selected brand filter
 
-      const response = await Api.get("/products");
-      const allProducts = response.data || [];
 
-      const filteredProducts =
-        brand === "all"
-          ? allProducts
-          : allProducts.filter(
-              (product: any) =>
-                product.brand.toLowerCase() === brand.toLowerCase()
-            );
-
-      // console.log('Filtered Products:', filteredProducts);
-
-      setProducts(filteredProducts);
-    } catch (error) {
-      setError("Error fetching products");
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
+  const { data: products, isLoading, isError, error } = useQuery(
+    {
+      queryKey: ["products", selectedBrand],
+      queryFn: () => fetchProducts(selectedBrand),
     }
+  );
+
+  // Handle brand filter click
+  const handleBrandFilterClick = (brandName: string) => {
+    setSelectedBrand(brandName);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      PopularFilterProducts(selectedBrand);
-    };
-
-    fetchData();
-  }, [selectedBrand]);
-
-  // filter brands
-  const handleBrandClick = (brand: string) => {
-    navigate(`/products/${brand}`);
-  };
-  useEffect(() => {
-    console.log("Products updated:", products);
-  }, [products]);
-
-  // productDetail
+  // Handle product click
   const handleProductClick = (id: number) => {
     navigate(`/productDetail/${id}`);
   };
 
-  const handleBrandFilterClick = (brandName: string) => {
-    setSelectedBrand(brandName);
+  // Handle brand click to navigate to the brand page
+  const handleBrandClick = (brandName: string) => {
+    navigate(`/products/${brandName}`);
   };
+
   return (
     <Layout>
       <div className="p-2">
         <Container>
-          <div className="container p-8 text-base ">
-            {/* Action Bar */}
-            {/* header */}
+          <div className="container p-8 text-base">
             {/* Search Bar */}
             <Search />
 
-            {/* Companies brand */}
+            {/* Companies Brand */}
             <div className="flex flex-wrap mt-4 items-center justify-between gap-1">
               {brand.map((item, index) => (
                 <BrandCard
@@ -190,10 +134,7 @@ const Home = () => {
                   <p id="popular-btn" className="font-medium text-lg">
                     Most Popular
                   </p>
-                  <p
-                    onClick={() => navigate("/products/all")}
-                    className="text-blue-500 cursor-pointer"
-                  >
+                  <p onClick={() => navigate("/products/all")} className="text-blue-500 cursor-pointer">
                     See All
                   </p>
                 </div>
@@ -201,10 +142,7 @@ const Home = () => {
                   <button
                     className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
                     onClick={() => handleBrandClick("all")}
-                    style={{
-                      backgroundColor:
-                        selectedBrand === "all" ? "#ddd" : "transparent",
-                    }}
+                    style={{ backgroundColor: selectedBrand === "all" ? "#ddd" : "transparent" }}
                   >
                     All
                   </button>
@@ -213,12 +151,7 @@ const Home = () => {
                       key={item.brandName}
                       className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md"
                       onClick={() => handleBrandFilterClick(item.brandName)}
-                      style={{
-                        backgroundColor:
-                          selectedBrand === item.brandName
-                            ? "#ddd"
-                            : "transparent",
-                      }}
+                      style={{ backgroundColor: selectedBrand === item.brandName ? "#ddd" : "transparent" }}
                     >
                       {item.brandName}
                     </button>
@@ -227,16 +160,13 @@ const Home = () => {
               </header>
             </div>
 
-            {/* Products */}
-            <div
-              id="products"
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8"
-            >
-              {loading ? (
+            {/* Products Section */}
+            <div id="products" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+              {isLoading ? (
                 <div>Loading...</div>
-              ) : error ? (
-                <div>{error}</div>
-              ) : products.length > 0 ? (
+              ) : isError ? (
+                <div>{(error as Error).message}</div>
+              ) : products && products.length > 0 ? (
                 products.map((item) => (
                   <ProductCard
                     key={item.id}
@@ -250,23 +180,11 @@ const Home = () => {
                 <div>No products available.</div>
               )}
             </div>
-            {/* 
-{
-   products.map((item) => (
-    <ProductCard
-      key={item.id}
-      productName={item.productName}
-      price={item.price}
-      image={item.image}
-    />
-  ))
-} */}
-            {/* footer Buttons */}
-            {/* <Footer /> */}
           </div>
         </Container>
       </div>
     </Layout>
   );
 };
+
 export default Home;

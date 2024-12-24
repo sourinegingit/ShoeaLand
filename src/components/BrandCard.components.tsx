@@ -10,6 +10,7 @@ export interface IBrandProps {
 const BrandCard: FC<IBrandProps> = ({ image, brandName, onClick }): ReactElement => {
   return (
     <div
+ 
       onClick={onClick} 
       className="flex flex-col items-center bg-white p-1 rounded-lg cursor-pointer"
     >

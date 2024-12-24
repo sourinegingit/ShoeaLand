@@ -17,8 +17,14 @@ import Register from "./components/Login/Register.tsx";
 import ResetPassword from "./components/Login/ResetPassword.tsx";
 import Cart from "./components/cart/Cart.tsx";
 import CartProvider from "./components/context/CartContext.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+  const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
+
+
+  <QueryClientProvider client={queryClient}>
   <CartProvider>
 
  <BrowserRouter>
@@ -44,4 +50,6 @@ createRoot(document.getElementById("root")!).render(
     </Routes>
   </BrowserRouter>
   </CartProvider>
+  </QueryClientProvider>
+
 )
