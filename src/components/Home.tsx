@@ -172,7 +172,7 @@ const Home = () => {
                     key={item.id}
                     title={item.title}
                     price={item.price}
-                    images={item.images.title.src}
+                    images={item.images}
                     onClick={() => handleProductClick(item.id)}
                   />
                 ))

@@ -39,7 +39,7 @@ const SearchResults = () => {
                 key={item.id}
                 title={item.title}
                 price={item.price}
-                images={item.images.title.src}
+                images={item.images}
                 onClick={() => console.log(item.id)} 
               />
             ))

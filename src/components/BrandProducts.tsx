@@ -49,7 +49,7 @@ const BrandProducts = () => {
               key={item.id}
               title={item.title}
               price={item.price}
-              images={item.images.title.src}
+              images={item.images}
             />
           ))
         ) : (

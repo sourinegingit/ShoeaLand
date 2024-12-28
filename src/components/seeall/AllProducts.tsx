@@ -8,9 +8,11 @@ import { fetchAllProducts } from '../../api/api';
 
 
 const AllProducts = () => {
-  const { data: products, isLoading, isError, error } = useQuery(
-    ['products'],  // queryKey
-    fetchAllProducts,  // queryFn
+  const { data: products, isLoading, isError, error } = useQuery({
+      queryKey:["products"],  // queryKey
+    queryFn:fetchAllProducts,  // queryFn
+  }
+  
   );
 
   return (
@@ -28,7 +30,7 @@ const AllProducts = () => {
                   key={item.id}
                   title={item.title}
                   price={item.price}
-                  images={item.images.title.src}
+                  images={item.images}
                 />
               ))
             ) : (

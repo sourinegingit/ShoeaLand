@@ -3,28 +3,27 @@ import { CartItem } from "../components/reducers/cart.reducer";
 import { Products } from "../type";
 import Api from "./base";
 
-
- export const fetchProducts = async (brand: string) => {
+export const fetchProducts = async (brand: string) => {
   try {
     const response = await Api.get("/products");
     const allProducts = response.data || [];
 
     return brand === "all"
       ? allProducts
-      : allProducts.filter((product: Products) => product.brand.toLowerCase() === brand.toLowerCase());
- 
+      : allProducts.filter(
+          (product: Products) =>
+            product.brand.toLowerCase() === brand.toLowerCase()
+        );
   } catch (error) {
     console.error("Error fetching products:", error);
-    throw error; 
+    throw error;
   }
 };
-
 
 export const fetchAllProducts = async (): Promise<IProductProps[]> => {
   const response = await Api.get("/products");
   return response.data || [];
 };
-
 
 export const fetchProductsByBrand = async (brand?: string) => {
   try {
@@ -37,7 +36,6 @@ export const fetchProductsByBrand = async (brand?: string) => {
   }
 };
 
-
 export const updateCartItem = async (cartItem: CartItem) => {
   try {
     const response = await Api.put(`/cart/${cartItem.id}`, {
@@ -45,9 +43,9 @@ export const updateCartItem = async (cartItem: CartItem) => {
       size: cartItem.size,
       color: cartItem.color,
     });
-    return response.data;  }
-    catch (error) {
-      console.error('Error updating cart item:', error);
-      throw error;
-    }
+    return response.data;
+  } catch (error) {
+    console.error("Error updating cart item:", error);
+    throw error;
+  }
 };
