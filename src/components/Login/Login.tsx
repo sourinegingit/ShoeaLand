@@ -5,6 +5,9 @@ import { PiLockKeyBold } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { ILoginApiParams, loginApi } from "../../api/auth.api";
+import { useAuth } from "../context/Auth.context";
 
 // Define the interface for form data
 export interface ILoginFormData {
@@ -19,18 +22,25 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
+  const { handleSet } = useAuth(); // Access context to set the user info
 
   // Zod validation schemas for username and password
   const usernameSchema = z
     .string()
     .min(5, "Username must have at least 5 characters")
-    .regex(/^[A-Za-z][A-Za-z0-9 -]*$/, "Username must be alphanumeric and cannot contain spaces");
+    .regex(
+      /^[A-Za-z][A-Za-z0-9 -]*$/,
+      "Username must be alphanumeric and cannot contain spaces"
+    );
 
   const passwordSchema = z
     .string()
     .min(8, "Password must have at least 8 characters")
     .max(16, "Password must have at most 16 characters")
-    .regex(/[A-Za-z0-9!@#$]/, "Password must contain at least one alphanumeric character or special symbol (!@#$)");
+    .regex(
+      /[A-Za-z0-9!@#$]/,
+      "Password must contain at least one alphanumeric character or special symbol (!@#$)"
+    );
 
   // Combined schema using zod
   const schema = z.object({
@@ -39,7 +49,11 @@ const Login = () => {
   });
 
   // Initialize useForm hook with zodResolver
-  const { register, handleSubmit, formState: { errors } } = useForm<ILoginFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginFormData>({
     resolver: zodResolver(schema),
   });
 
@@ -56,6 +70,20 @@ const Login = () => {
     }
   }, []);
 
+  const loginMutation = useMutation({
+    mutationKey: "loginApi",
+    mutationFn: (data: ILoginApiParams) => loginApi(data),
+    onSuccess: (data) => {
+      const { username, accessToken } = data.data;
+      handleSet(username, accessToken); // Set user info in context
+      setErrorMessage("Login successful!");
+      navigate("/home"); // Redirect on success
+    },
+    onError: (error) => {
+      setErrorMessage("Login failed. Please check your credentials.");
+    },
+  });
+
   // Handle form submission
   const handleLogin = (data: ILoginFormData) => {
     if (Date.now() < blockedUntil) {
@@ -63,23 +91,7 @@ const Login = () => {
       return;
     }
 
-    // Perform the password check (you should replace "correctPassword" with your real password check logic)
-    if (data.password !== "correctPassword") {
-      setFailedAttempts((prev) => {
-        const newFailedAttempts = prev + 1;
-        if (newFailedAttempts >= 5) {
-          const blockedTime = Date.now() + 5 * 60 * 1000; // Block for 5 minutes
-          localStorage.setItem("blockedUntil", String(blockedTime));
-          setBlockedUntil(blockedTime);
-        }
-        localStorage.setItem("failedAttempts", String(newFailedAttempts));
-        return newFailedAttempts;
-      });
-      setErrorMessage("The entered password is not correct.");
-    } else {
-      setErrorMessage("Login successful!");
-      navigate("/home"); // Redirect on success
-    }
+    loginMutation.mutate(data);
   };
 
   return (
@@ -124,7 +136,12 @@ const Login = () => {
 
           {/* Reset Password Link */}
           <div>
-            <h2 className="text-gray-500 mt-6 text-xl" onClick={() => navigate("/reset")}>Reset Password</h2>
+            <h2
+              className="text-gray-500 mt-6 text-xl"
+              onClick={() => navigate("/reset")}
+            >
+              Reset Password
+            </h2>
           </div>
 
           {/* Submit Button */}
