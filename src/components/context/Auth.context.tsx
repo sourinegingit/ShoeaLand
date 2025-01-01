@@ -1,87 +1,40 @@
-import {
-  createContext,
-  FC,
-  ReactElement,
-  ReactNode,
-  useContext,
-  useReducer,
-} from "react";
+// src/components/context/Auth.context.tsx
+import React, { createContext, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../store';
+import { clearAuth, setAuth } from '../store/authSlice';
 
-const initialValue: IAuthContextValue = {
-  username: "",
-  accessToken: "",
-};
 
-interface IAuthProviderProps {
-  children: ReactNode;
-}
-
-interface IAuthContextValue {
+interface IAuthContext {
   username: string;
   accessToken: string;
+  setAuth: (username: string, accessToken: string) => void;
+  clearAuth: () => void;
 }
 
-interface IAuthContextProvider {
-  auth: IAuthContextValue;
-  set: (username: string, accessToken: string) => void;
-  clear: () => void;
-}
+const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
-const AuthContext = createContext<IAuthContextProvider>({
-  auth: initialValue,
-  set: () => {},
-  clear: () => {},
-});
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const dispatch: AppDispatch = useDispatch();
+  const auth = useSelector((state: RootState) => state.auth);
 
-const reducer = (
-  state: IAuthContextValue,
-  action: { type: string; value?: IAuthContextValue }
-): IAuthContextValue => {
-  switch (action.type) {
-    case "set":
-      return {
-        username: action.value?.username || "",
-        accessToken: action.value?.accessToken || "",
-      };
-    case "clear":
-      return initialValue;
-    default:
-      return state;
-  }
-};
-
-export const AuthProvider: FC<IAuthProviderProps> = ({
-  children,
-}): ReactElement => {
-  const [auth, authDispatch] = useReducer(reducer, initialValue);
-
-  const handleSet = (username: string, accessToken: string) => {
-    authDispatch({
-      type: "set",
-      value: {
-        username,
-        accessToken,
-      },
-    });
+  const handleSetAuth = (username: string, accessToken: string) => {
+    dispatch(setAuth({ username, accessToken }));
   };
 
-  const handleClear = () => {
-    authDispatch({
-      type: "clear",
-    });
-  };
-
-  const contextValue = {
-    auth,
-    handleClear,
-    handleSet,
+  const handleClearAuth = () => {
+    dispatch(clearAuth());
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ ...auth, setAuth: handleSetAuth, clearAuth: handleClearAuth }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
+export const useAuth = (): IAuthContext => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  return context;
 };

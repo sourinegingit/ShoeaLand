@@ -6,7 +6,7 @@ import Api from "./base";
 export const fetchProducts = async (brand: string) => {
   try {
     const response = await Api.get("/products");
-    const allProducts = response.data || [];
+    const allProducts: Products[] = response.data || [];
 
     return brand === "all"
       ? allProducts
@@ -19,6 +19,7 @@ export const fetchProducts = async (brand: string) => {
     throw error;
   }
 };
+
 
 export const fetchAllProducts = async (): Promise<IProductProps[]> => {
   const response = await Api.get("/products");

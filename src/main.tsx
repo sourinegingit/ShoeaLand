@@ -19,41 +19,37 @@ import Cart from "./components/cart/Cart.tsx";
 import CartProvider from "./components/context/CartContext.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./components/context/Auth.context.tsx";
+import { Provider } from "react-redux";
+import store from "./components/store/index.tsx";
 
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
-
-
   <QueryClientProvider client={queryClient}>
-  <CartProvider>
-<AuthProvider>
-
- <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Loading />} />
-      <Route path="/home" index element={<Home />} />
-      <Route path="/welcome" element={<Welcome />} />
-      <Route path="/slide1" element={<Slide1 />} />
-      <Route path="/slide2" element={<Slide2 />} />
-      <Route path="slide3" element={<Slide3 />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register/>} />
-      <Route path="/reset" element={<ResetPassword />} />
-
-      <Route path="/products/:brand" element={<BrandProducts />} />
-      <Route path="/search/:query" element={<SearchResults />} />
-      <Route path="/products/all" element={<AllProducts />} />
-      <Route path="/productdetail/:id" element={<ProductDetail />} />
-      <Route path="/favorites" element={<Favorites />} />
-      <Route path="/cart" element={<Cart />} />
-
-
-    </Routes>
-  </BrowserRouter>
-  </AuthProvider>
-
-  </CartProvider>
+    <Provider store={store}> {/* Place Provider here */}
+      <CartProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Loading />} />
+              <Route path="/home" index element={<Home />} />
+              <Route path="/welcome" element={<Welcome />} />
+              <Route path="/slide1" element={<Slide1 />} />
+              <Route path="/slide2" element={<Slide2 />} />
+              <Route path="/slide3" element={<Slide3 />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset" element={<ResetPassword />} />
+              <Route path="/products/:brand" element={<BrandProducts />} />
+              <Route path="/search/:query" element={<SearchResults />} />
+              <Route path="/products/all" element={<AllProducts />} />
+              <Route path="/productdetail/:id" element={<ProductDetail />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </CartProvider>
+    </Provider>
   </QueryClientProvider>
-
-)
+);

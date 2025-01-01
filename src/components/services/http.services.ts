@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BASE_URL, TIMEOUT } from "../config/api.config";
+import { Api, TIMEOUT } from "../config/api.config";
 
 const http=axios.create({
-    baseURL:BASE_URL,
-    timeout:TIMEOUT
+    baseURL:Api,
+  timeout:TIMEOUT
 })
  export const HTTP={
 get:http.get,
@@ -13,8 +13,8 @@ put:http.put
 }
 
  const httpPrivate=axios.create({
-    baseURL:BASE_URL,
-    timeout:TIMEOUT,
+    baseURL:Api,
+  timeout:TIMEOUT,
     withCredentials:true
 })
 
