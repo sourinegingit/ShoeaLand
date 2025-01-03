@@ -2,11 +2,13 @@ import BrandCard, { IBrandProps } from "./BrandCard.components";
 import ProductCard from "./products/ProductCard";
 import Layout from "./layout/Layout";
 import Container from "../Container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "./search/Search";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProductsByBrands } from "../api/api";
+import Api from "../api/base";
+import { CartItem } from "../type";
 
 // Brands array
 const brand: IBrandProps[] = [
@@ -23,6 +25,10 @@ const brand: IBrandProps[] = [
 const Home = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const navigate = useNavigate();
+
+
+
+
 
   // Fetch products using React Query with the selected brand filter
   const { data: products, isLoading, isError, error } = useQuery(

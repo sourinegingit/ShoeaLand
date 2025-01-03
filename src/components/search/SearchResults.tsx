@@ -12,7 +12,7 @@ const SearchResults = () => {
     useEffect(() => {
       const fetchSearchResults = async () => {
         try {
-          const response = await Api.get(`/products?title_like=${query}`);
+          const response = await Api.get(`/api/products?search=${query}`);
           setProducts(response.data);
         } catch (error) {
           setError("Error fetching search results");
@@ -37,7 +37,7 @@ const SearchResults = () => {
             products.map((item) => (
               <ProductCard
                 key={item.id}
-                title={item.title}
+                name={item.name}
                 price={item.price}
                 images={item.images}
                 onClick={() => console.log(item.id)} 

@@ -11,17 +11,18 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
   const [quantity, setQuantity] = useState<number>(item.quantity);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+
   // Handle delete action
   const handleDelete = async () => {
     try {
-      console.log("Item ID:", item.id); 
-  
+      console.log("Item ID:", item.id);
+
       if (!item.id) {
         throw new Error("Item ID is missing");
       }
-  
+
       const response = await Api.delete(`/cart/${item.id}`);
-  
+
       if (response.status === 200) {
         dispatch({ type: "REMOVE_ITEM", payload: item.id });
         setIsModalOpen(false);
@@ -32,7 +33,6 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
       console.error("Error deleting item:", error);
     }
   };
-  
 
   // Handle modal toggle
   const toggleModal = () => {
@@ -77,12 +77,16 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
           <div className="flex flex-col">
             <p className="text-3xl mt-3">{item.title}</p>
             <div className="flex items-center mt-2 gap-2">
-              <p className="text-sm border-r-2 p-1 border-gray-400">{item.color}</p>
+              <p className="text-sm border-r-2 p-1 border-gray-400">
+                {item.color}
+              </p>
               <p className="text-sm">{item.size}</p>
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="font-semibold text-black">${(parseFloat(item.price) * quantity)}</p>
+              <p className="font-semibold text-black">
+                ${parseFloat(item.price) * quantity}
+              </p>
               <CartQuantity
                 value={quantity}
                 min={1}
@@ -96,7 +100,10 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
         </div>
 
         <div>
-          <RiDeleteBin6Line className="text-4xl mt-3 p-1" onClick={toggleModal} />
+          <RiDeleteBin6Line
+            className="text-4xl mt-3 p-1"
+            onClick={toggleModal}
+          />
         </div>
       </div>
 

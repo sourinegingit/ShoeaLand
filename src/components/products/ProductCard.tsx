@@ -16,11 +16,13 @@ name: string;
   sizes:string[];
   view_count:number;
   onClick: () => void; 
+  onRemove:() => void;// Remove item
+
 }
 
 
 
-const ProductCard: FC<IProductProps> = ({ name, price, images, id ,onClick})  => {
+const ProductCard: FC<IProductProps> = ({ name, price, images ,onClick})  => {
     return (
       <div onClick={onClick}  className="bg-white mt-4 col-span-1 cursor-pointer border-[1.2px] border-slate-200 rounded-sm p-2 transition text-center text-sm hover:scale-105">
         {/* Product Image */}

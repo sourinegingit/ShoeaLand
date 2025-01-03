@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SetSize from "../products/SetSize";
 import CartQuantity from "../cart/CartQuantity";
 import { CartContext } from "../context/CartContext";
-import { getProductsById } from "../../api/api"; // This imports the function you defined
+import { getProductsById } from "../../api/api"; 
 import Api from "../../api/base";
 import Container from "../../Container";
 
