@@ -10,6 +10,7 @@ const Favorites = () => {
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
 
+  
   return (
     <Layout>
       <div className="p-2">
@@ -23,7 +24,7 @@ const Favorites = () => {
                 favorites.map((item) => (
                   <ProductCard
                     key={item.id}
-                    title={item.title}
+                    name={item.name}
                     price={item.price}
                     images={item.images}
                   />

@@ -4,32 +4,39 @@ import ProductCard, { IProductProps } from "./products/ProductCard";
 import Api from "../api/base";
 import Layout from "./layout/Layout";
 import Container from "../Container";
+import { fetchProductsByBrand } from "../api/api";
+import { Products } from "../type";
 
 const BrandProducts = () => {
   const { brand } = useParams<{ brand: string }>(); 
   // console.log(brand);
   
-  const [products, setProducts] = useState<IProductProps[]>([]);
+  const [products, setProducts] = useState<Products[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+
+
+  const getProductsByBrand = async () => {
+    try {
+      setLoading(true);
+      const response = await fetchProductsByBrand(); 
+      console.log(response);
+      
+      setProducts(response);
+    } catch (error) {
+      setError("Error fetching products");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   useEffect(() => {
-    const fetchProductsByBrand = async () => {
-      try {
-        setLoading(true);
-        const response = await Api.get(`/products?brand=${brand}`); 
-        console.log(response.data);
-        
-        setProducts(response.data);
-      } catch (error) {
-        setError("Error fetching products");
-      } finally {
-        setLoading(false);
-      }
-    };
+  
 
     if (brand) {
-      fetchProductsByBrand();
+      getProductsByBrand();
     }
   }, [brand]); 
 
