@@ -25,20 +25,25 @@ export interface Category {
     view_count: number;
     sold_quantity: number;
   }
-  export interface Products  {
+  export interface IProductProps {
     id: number;
-    title: string;
-    rate: string;
-    price: string;
-    size: number[];
-    color: string[];
-    brand: string;
-    images: ProductImage;
-    discount: number;
-    views: number;
-    category: string;
-  };
+  name: string;
+    price: number;
+    sold_quantity:number;
+    src:string;
+    description:string;
+    colors:string[];
+    images:string[];
+    isFavorite:string;
+    is_popular:boolean;
+    order:number;
+    rating:number;
+    sizes:string[];
+    view_count:number;
+    onClick: () => void; 
+    onRemove:(id:number) => void;// Remove item
   
+  }
   export interface Comment  {
     id: string;
     text: string;
@@ -46,18 +51,18 @@ export interface Category {
   };
   
   export interface CartItem  {
-    id: number;
-    title: string;
+    productId: number;
+    name: string;
     price: number;
     order: number;
     size: number[];
     color: string[];
     brand: string;
-    images: string;
+    images: string[];
     sizeselect: number;
     colorselect: string;
     quantity: number;
-    totalPr: number;
+    total_price: number;
   };
   
 

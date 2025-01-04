@@ -1,24 +1,28 @@
 import { Link, useParams } from "react-router-dom";
-import {  useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { BiHeart } from "react-icons/bi";
 import SetColor from "../products/SetColor";
 import SetSize from "../products/SetSize";
 import { IProductDetail } from "../../type";
 import Container from "../../Container";
 import CartQuantity from "../cart/CartQuantity";
-import { addToWishList, fetchProductDetail, removeFromWishList } from "../../api/api";
-
-
+import {
+  addToWishList,
+  fetchProductDetail,
+  removeFromWishList,
+} from "../../api/api";
+import { addToCart } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false); // وضعیت ویش‌لیست
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-  // واکشی جزئیات محصول
   const {
     data: product,
     isLoading,
@@ -26,39 +30,58 @@ const ProductDetail = () => {
   } = useQuery<IProductDetail>({
     queryKey: ["product", id],
     queryFn: () => fetchProductDetail(id!),
-  
-    
   });
 
-  // console.log(product);
-  
-  // اضافه کردن یا حذف کردن از ویش لیست
   const { mutate: addToFavorites } = useMutation({
     mutationFn: addToWishList,
-
   });
 
-  // console.log(addToFavorites);
-  
   const { mutate: removeFromFavorites } = useMutation({
     mutationFn: removeFromWishList,
   });
 
+  useEffect(() => {
+    if (product) {
+      setIsFavorite(product.isFavorite || false);
+    }
+  }, [product]);
+
   const handleFavoriteClick = () => {
+    if (!product) return;
     if (isFavorite) {
-      removeFromFavorites(product!.id);
+      removeFromFavorites(product.id);
       setIsFavorite(false);
     } else {
-      addToFavorites(product!.id);
+      addToFavorites(product.id);
       setIsFavorite(true);
     }
   };
 
-  // مدیریت تغییرات سایز و رنگ
-  const totalPrice = product ? product.price * quantity : 0;
+  const handleAddToCart = () => {
+    if (!selectedColor || !selectedSize) {
+      alert("Please select a color and size before adding to the cart.");
+      return;
+    }
+    if (product) {
+      dispatch(
+        addToCart({
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          total_price: product.price * quantity,
+          color: selectedColor,
+          size: selectedSize,
+          images: product.images,
+          quantity,
+        })
+      );
+    }
+  };
 
   if (isLoading) return <div>Loading product details...</div>;
   if (isError || !product) return <div>Product not found.</div>;
+
+  const totalPrice = product.price * quantity;
 
   return (
     <div className="p-4">
@@ -84,11 +107,9 @@ const ProductDetail = () => {
               <div>({product.rating} reviews)</div>
             </div>
             <div className="text-justify mt-4">{product.description}</div>
-
             <div>
               <span className="font-semibold">PRICE: ${product.price}</span>
             </div>
-
             <div className="flex items-center gap-28">
               <SetSize size={product.sizes} onSizeChange={setSelectedSize} />
               <SetColor
@@ -104,7 +125,6 @@ const ProductDetail = () => {
                 onChange={(e) => setQuantity(Number(e.target.value))}
               />
             </div>
-
             <div className="flex items-center border-t-2 border-gray-300 justify-between mt-4">
               <div className="flex mb-2 flex-col">
                 <p className="text-black font-semibold text-4xl text-start">
@@ -113,7 +133,10 @@ const ProductDetail = () => {
               </div>
               <div>
                 <Link to="/cart">
-                  <button className="bg-black rounded-full w-44 p-3 text-gray-100">
+                  <button
+                    onClick={handleAddToCart}
+                    className="bg-black rounded-full w-44 p-3 text-gray-100"
+                  >
                     Add To Cart
                   </button>
                 </Link>

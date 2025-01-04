@@ -1,11 +1,10 @@
-import { IProductProps } from "../components/products/ProductCard";
-import { IProductDetail, Products } from "../type";
+import { CartItem, IProductDetail, IProductProps } from "../type";
 
 import Api, { httpPrivate } from "./base";
 
 // Updated fetchProducts function to properly handle params as an object
 export async function fetchProducts(params: { brand: string }) {
-  const response = await Api.get<Products[]>("api/products", { params });
+  const response = await Api.get<IProductProps[]>("api/products", { params });
   // console.log(response);
   return response.data;
 }
@@ -16,7 +15,7 @@ export const fetchAllProducts = async (): Promise<IProductProps[]> => {
 };
 
 export const fetchProductsByBrand = async (brand?: string) => {
-  const res = await Api.get<Products[]>("api/products?brand=" + brand);
+  const res = await Api.get<IProductProps[]>("api/products?brand=" + brand);
 
   console.log(res.data);
   return res.data;
@@ -91,5 +90,17 @@ export const removeFromWishList = async (productId:number) => {
   //     Authorization: `Bearer ${token}`,
   //   }},
   );
+  return response.data;
+};
+
+
+// -----------cart------------
+export const addProductToCart = async (product: CartItem) => {
+  const response = await Api.post(`/cart`, product);
+  return response.data;
+};
+
+export const removeProductFromCart = async (productId: number) => {
+  const response = await Api.delete(`/cart/${productId}`);
   return response.data;
 };

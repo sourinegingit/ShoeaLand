@@ -1,14 +1,14 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import CartQuantity from "./CartQuantity";
-import { useContext, useState } from "react";
-import { CartContext } from "../context/CartContext";
+
 import { CartItem } from "../reducers/cart.reducer";
 import Footer from "../Footer.components";
 import Api from "../../api/base";
+import { useState } from "react";
 
 const CartItemCard = ({ item }: { item: CartItem }) => {
-  const { dispatch } = useContext(CartContext);
   const [quantity, setQuantity] = useState<number>(item.quantity);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 

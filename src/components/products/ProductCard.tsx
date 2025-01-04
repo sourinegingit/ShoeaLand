@@ -1,26 +1,8 @@
 import { FC } from "react";
-import { BiTrash } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
+import { IProductProps } from "../../type";
 
-export interface IProductProps {
-  id: number;
-name: string;
-  price: number;
-  sold_quantity:number;
-  src:string;
-  description:string;
-  colors:string[];
-  images:string[];
-  isFavorite:string;
-  is_popular:boolean;
-  order:number;
-  rating:number;
-  sizes:string[];
-  view_count:number;
-  onClick: () => void; 
-  onRemove:(id:number) => void;// Remove item
 
-}
 
 
 
