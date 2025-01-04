@@ -1,20 +1,15 @@
 import { Link, useParams } from "react-router-dom";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import {  useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { BiHeart } from "react-icons/bi";
 import SetColor from "../products/SetColor";
 import SetSize from "../products/SetSize";
 import { IProductDetail } from "../../type";
 import Container from "../../Container";
-import Api from "../../api/base";
 import CartQuantity from "../cart/CartQuantity";
-import { addToWishList, removeFromWishList } from "../../api/api";
+import { addToWishList, fetchProductDetail, removeFromWishList } from "../../api/api";
 
-// تابع برای دریافت اطلاعات ویش‌لیست از API
-const fetchProductDetail = async (id: string) => {
-  const response = await Api.get(`/api/products/${id}`);
-  return response.data;
-};
+
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -30,31 +25,31 @@ const ProductDetail = () => {
     isError,
   } = useQuery<IProductDetail>({
     queryKey: ["product", id],
-    queryFn: () => fetchProductDetail(id || ""),
+    queryFn: () => fetchProductDetail(id!),
+  
+    
   });
 
+  // console.log(product);
+  
   // اضافه کردن یا حذف کردن از ویش لیست
   const { mutate: addToFavorites } = useMutation({
     mutationFn: addToWishList,
-    // onSuccess: () => {
-    //   // پس از موفقیت، ویش‌لیست را دوباره بارگذاری کنید
-    //   QueryClient.invalidateQueries("wishlist");
-    // },
+
   });
 
+  // console.log(addToFavorites);
+  
   const { mutate: removeFromFavorites } = useMutation({
     mutationFn: removeFromWishList,
-    // onSuccess: () => {
-    //   queryClient.invalidateQueries("wishlist");
-    // },
   });
 
   const handleFavoriteClick = () => {
     if (isFavorite) {
-      removeFromFavorites(product.id);
+      removeFromFavorites(product!.id);
       setIsFavorite(false);
     } else {
-      addToFavorites(product.id);
+      addToFavorites(product!.id);
       setIsFavorite(true);
     }
   };

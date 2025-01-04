@@ -5,10 +5,7 @@ import { fetchWishList } from "../../api/api";
 import { useQuery } from "@tanstack/react-query";
 
 const Favorites = () => {
-  // const [favorites, setFavorites] = useState<IProductProps[]>(() => {
-  //   const storedFavorites = localStorage.getItem("favorites");
-  //   return storedFavorites ? JSON.parse(storedFavorites) : [];
-  // });
+
 
   const {
     data: favorites,
@@ -16,10 +13,9 @@ const Favorites = () => {
     isError,
   } = useQuery(
     {
-      queryKey: ["whishlist"],
+      queryKey: ["favorites"],
       queryFn: fetchWishList,
     }
-    // console.log(favorites);
   );
 
   return (

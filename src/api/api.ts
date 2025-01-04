@@ -1,9 +1,7 @@
-import { IProductDetail } from "../components/productDetail/ProductDetail";
 import { IProductProps } from "../components/products/ProductCard";
-import { Products } from "../type";
+import { IProductDetail, Products } from "../type";
 
 import Api, { httpPrivate } from "./base";
-import { getCookies } from "../components/utils/getCookies";
 
 // Updated fetchProducts function to properly handle params as an object
 export async function fetchProducts(params: { brand: string }) {
@@ -39,6 +37,15 @@ export const fetchProductsByBrands= async (brand?: string) => {
   // console.log(res.data);
   return res.data;
 };
+
+
+// تابع برای دریافت اطلاعات محصول از API
+export const fetchProductDetail = async (id: string) => {
+  const response = await Api.get(`/api/products/${id}`);
+  return response.data;
+};
+
+
 export const getPopularProducts = async () => {
   const response = await Api.get("api/products?is_popular=true");
   return response.data;
