@@ -47,14 +47,9 @@ export const getPopularProducts = async () => {
 // Fetch wishlist items from server
 export const fetchWishList = async () => {
 const token=getCookies()
-
-
-
   const response = await Api.get("/api/wishlist", {
-  
     headers: {
       Authorization: `Bearer ${token}`, // ارسال توکن به عنوان Authorization
-
     },
   });
 
@@ -65,12 +60,23 @@ const token=getCookies()
 
 // Add a product to wishlist
 export const addToWishList = async (productId:number) => {
-  const response = await Api.post("/api/wishlist", { productId });
+  const token=getCookies()
+  const response = await Api.post("/api/wishlist", { productId }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
 // Remove a product from wishlist
 export const removeFromWishList = async (productId:number) => {
-  const response = await Api.delete(`/api/wishlist/${productId}`);
+  const token=getCookies()
+
+  const response = await Api.delete(`/api/wishlist/${productId}`,
+   { headers: {
+      Authorization: `Bearer ${token}`,
+    }},
+  );
   return response.data;
 };

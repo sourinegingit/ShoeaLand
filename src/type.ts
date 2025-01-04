@@ -8,7 +8,23 @@ export interface Category {
     title: { src: string };
     list: { src: string }[];
   };
-  
+  export interface IProductDetail {
+    id: number;
+    name: string;
+    price: number;
+    isFavorite: boolean;
+    images: string[];
+    icon: string;
+    brand: string[];
+    colors: string[];
+    sizes: string[];
+    order: number;
+    is_popular: boolean;
+    description: string;
+    rating: number;
+    view_count: number;
+    sold_quantity: number;
+  }
   export interface Products  {
     id: number;
     title: string;
