@@ -2,7 +2,7 @@ import { IProductDetail } from "../components/productDetail/ProductDetail";
 import { IProductProps } from "../components/products/ProductCard";
 import { Products } from "../type";
 
-import Api from "./base";
+import Api, { httpPrivate } from "./base";
 import { getCookies } from "../components/utils/getCookies";
 
 // Updated fetchProducts function to properly handle params as an object
@@ -46,12 +46,14 @@ export const getPopularProducts = async () => {
 
 // Fetch wishlist items from server
 export const fetchWishList = async () => {
-const token=getCookies()
-  const response = await Api.get("/api/wishlist", {
-    headers: {
-      Authorization: `Bearer ${token}`, // ارسال توکن به عنوان Authorization
-    },
-  });
+// const token=getCookies()
+  const response = await httpPrivate.get("/api/wishlist"
+    // , {
+    // headers: {
+    //   Authorization: `Bearer ${token}`, // ارسال توکن به عنوان Authorization
+    // },
+  // }
+);
 
   return response.data;
 };
@@ -60,23 +62,27 @@ const token=getCookies()
 
 // Add a product to wishlist
 export const addToWishList = async (productId:number) => {
-  const token=getCookies()
-  const response = await Api.post("/api/wishlist", { productId }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  // const token=getCookies()
+  const response = await httpPrivate.post("/api/wishlist"
+    , { productId }
+  //   , {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // }
+);
   return response.data;
 };
 
 // Remove a product from wishlist
 export const removeFromWishList = async (productId:number) => {
-  const token=getCookies()
+  // const token=getCookies()
 
-  const response = await Api.delete(`/api/wishlist/${productId}`,
-   { headers: {
-      Authorization: `Bearer ${token}`,
-    }},
+  const response = await httpPrivate.delete(`/api/wishlist/${productId}`
+    // ,
+  //  { headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   }},
   );
   return response.data;
 };

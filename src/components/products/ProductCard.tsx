@@ -42,12 +42,7 @@ const ProductCard: FC<IProductProps> = ({ name, price, images ,onClick})  => {
         <div className="p-4 mt-4">
           <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
           <p className="text-xl font-bold text-gray-900 mt-2">${price}</p>
-          <button
-        // onClick={() => onRemove(id)}
-        className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600"
-      >
-        <BiTrash size={20} />
-      </button>
+    
         </div>
       </div>
     );

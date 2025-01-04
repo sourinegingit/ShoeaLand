@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ProductCard, { IProductProps } from "./products/ProductCard";
-import Api from "../api/base";
+import ProductCard from "./products/ProductCard";
 import Layout from "./layout/Layout";
 import Container from "../Container";
 import { fetchProductsByBrand } from "../api/api";
