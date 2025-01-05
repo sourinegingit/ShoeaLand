@@ -4,6 +4,7 @@ import Footer from "../Footer.components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { removeFromCart, updateQuantity } from "../store/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -36,8 +37,10 @@ const Cart = () => {
       )}
       <div className="flex items-center justify-between p-2 gap-16 w-full h-28 bg-gray-300 mt-4 fixed bottom-20 right-0">
         <p className="text-2xl font-semibold">Total: ${totalPrice}</p>
-        <button className="w-56 bg-black text-white font-semibold rounded-full p-2 text-xl">check out</button>
-      </div>
+
+<Link to="/checkout">
+<button className="w-56 bg-black text-white font-semibold rounded-full p-2 text-xl">check out</button>
+</Link>      </div>
       <Footer/>
     </div>
   );

@@ -60,4 +60,20 @@ export interface Category {
     images: string[];
   }
 
-  
+  // checkout
+ export  interface OrderItemProps {
+    name: string;
+    details: string;
+    price: string;
+    quantity: number;
+    imageUrl: string;
+  }
+  export interface OrderListProps {
+    items: OrderItemProps[];
+  }
+
+  export interface AmountSummaryProps {
+    amount: string;
+    shipping: string;
+    total: string;
+  }
