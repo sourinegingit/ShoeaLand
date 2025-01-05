@@ -77,3 +77,8 @@ export interface Category {
     shipping: string;
     total: string;
   }
+  export interface Address {
+    name: string;
+    address: string;
+    isSelected: boolean;
+  }

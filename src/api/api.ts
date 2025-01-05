@@ -1,4 +1,4 @@
-import { CartItem, IProductDetail, IProductProps } from "../type";
+import { Address, CartItem, IProductDetail, IProductProps } from "../type";
 
 import Api, { httpPrivate } from "./base";
 
@@ -102,5 +102,17 @@ export const addProductToCart = async (product: CartItem) => {
 
 export const removeProductFromCart = async (productId: number) => {
   const response = await Api.delete(`/cart/${productId}`);
+  return response.data;
+};
+
+// -------------------------------aaddres
+export const fetchAddresses = async() => {
+  const  response  = await httpPrivate.get<Address[]>("/api/address");
+  return response.data;
+};
+
+
+export const updateAddress = async (name: string, address: string) => {
+  const response = await httpPrivate.put(`/api/address/${name}`, { address });
   return response.data;
 };

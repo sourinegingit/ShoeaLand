@@ -14,7 +14,7 @@ const Checkout: React.FC = () => {
           details: "Color: Red | Size: M",
           price: "$50.00",
           quantity: 2,
-          imageUrl: "./assets/product-image.jpg",
+          imageUrl: "./public/assets/products/adidas/1.Webp",
         },
         {
           name: "Product Name",
