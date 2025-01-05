@@ -1,107 +1,52 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import CartQuantity from "./CartQuantity";
-
-import { CartItem } from "../reducers/cart.reducer";
 import Footer from "../Footer.components";
-import Api from "../../api/base";
+import CartQuantity from "./CartQuantity";
 import { useState } from "react";
+import { CartItem } from "../../type";
 
-const CartItemCard = ({ item }: { item: CartItem }) => {
-  const [quantity, setQuantity] = useState<number>(item.quantity);
+interface CartItemCardProps {
+  item: CartItem;
+  onRemove: () => void;
+  onQuantityChange: (quantity: number) => void;
+}
 
+const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove, onQuantityChange }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-
-  // Handle delete action
-  const handleDelete = async () => {
-    try {
-      console.log("Item ID:", item.id);
-
-      if (!item.id) {
-        throw new Error("Item ID is missing");
-      }
-
-      const response = await Api.delete(`/cart/${item.id}`);
-
-      if (response.status === 200) {
-        dispatch({ type: "REMOVE_ITEM", payload: item.id });
-        setIsModalOpen(false);
-      } else {
-        console.error("Error deleting item from server:", response.data);
-      }
-    } catch (error) {
-      console.error("Error deleting item:", error);
-    }
-  };
-
-  // Handle modal toggle
   const toggleModal = () => {
-    try {
-      setIsModalOpen(!isModalOpen);
-    } catch (error) {
-      console.error("Error toggling modal:", error);
-    }
-  };
-
-  // Handle quantity change
-  const handleQuantityChange = async (newQuantity: number) => {
-    try {
-      if (newQuantity < 1) {
-        throw new Error("Quantity must be greater than 0");
-      }
-
-      // Update quantity on the server
-      const updatedItem = { ...item, quantity: newQuantity };
-      const response = await Api.put(`/cart/${item.id}`, updatedItem);
-
-      if (response.status === 200) {
-        dispatch({ type: "UPDATE_ITEM", payload: updatedItem });
-        setQuantity(newQuantity);
-      } else {
-        console.error("Error updating quantity on server:", response.data);
-      }
-    } catch (error) {
-      console.error("Error updating quantity:", error);
-    }
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
     <div className="flex flex-col mt-2">
       <div className="flex p-2 items-start justify-evenly gap-5 bg-gray-200 rounded-xl">
         <img
-          src="./assets/products/adidas/1.webp" // You can replace with dynamic image path
+          src={item.images[0]} // Dynamic image path
           className="w-36 object-cover rounded-lg"
-          alt={item.title}
+          alt={item.name}
         />
         <div className="flex p-2 items-center gap-2 justify-between">
           <div className="flex flex-col">
-            <p className="text-3xl mt-3">{item.title}</p>
+            <p className="text-3xl mt-3">{item.name}</p>
             <div className="flex items-center mt-2 gap-2">
-              <p className="text-sm border-r-2 p-1 border-gray-400">
-                {item.color}
-              </p>
+              <p className="text-sm border-r-2 p-1 border-gray-400">{item.color}</p>
               <p className="text-sm">{item.size}</p>
             </div>
-
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mt-2">
               <p className="font-semibold text-black">
-                ${parseFloat(item.price) * quantity}
+                ${(item.price * item.quantity).toFixed(2)}
               </p>
               <CartQuantity
-                value={quantity}
+                value={item.quantity}
                 min={1}
-                onChange={(e) => {
-                  const newQuantity = Number(e.target.value);
-                  handleQuantityChange(newQuantity);
-                }}
+                onChange={(e) => onQuantityChange(Number(e.target.value))}
               />
             </div>
           </div>
         </div>
-
         <div>
           <RiDeleteBin6Line
-            className="text-4xl mt-3 p-1"
+            className="text-4xl mt-3 p-1 cursor-pointer"
             onClick={toggleModal}
           />
         </div>
@@ -110,26 +55,29 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
       {/* Modal for Confirmation */}
       {isModalOpen && (
         <div className="fixed w-full left-0 bottom-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white flex flex-col w-full p-8 rounded-lg">
+          <div className="bg-white flex flex-col w-full max-w-md p-8 rounded-lg">
             <h3 className="text-xl font-semibold mb-4">Remove from Cart</h3>
             <div className="flex items-center justify-between">
               <img
-                src="./assets/products/adidas/1.webp"
+                src={item.images[0]}
                 className="w-12 h-12 object-cover rounded-lg"
-                alt={item.title}
+                alt={item.name}
               />
-              <p className="flex-1 ml-4">{item.title}</p>
+              <p className="flex-1 ml-4">{item.name}</p>
             </div>
             <div className="flex justify-between mt-4">
               <button
-                className="bg-gray-300 w-52 rounded-full p-4"
+                className="bg-gray-300 w-24 rounded-full p-2"
                 onClick={toggleModal}
               >
                 Cancel
               </button>
               <button
-                className="bg-gray-700 w-52 rounded-full p-4 text-white"
-                onClick={handleDelete}
+                onClick={() => {
+                  onRemove();
+                  toggleModal();
+                }}
+                className="bg-red-600 w-24 rounded-full p-2 text-white"
               >
                 Delete
               </button>

@@ -7,17 +7,18 @@ import SetSize from "../products/SetSize";
 import { IProductDetail } from "../../type";
 import Container from "../../Container";
 import CartQuantity from "../cart/CartQuantity";
+import { useDispatch } from 'react-redux';
+
+
 import {
   addToWishList,
   fetchProductDetail,
   removeFromWishList,
 } from "../../api/api";
 import { addToCart } from "../store/cartSlice";
-import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -57,9 +58,12 @@ const ProductDetail = () => {
     }
   };
 
+  const dispatch = useDispatch();
+
   const handleAddToCart = () => {
-    if (!selectedColor || !selectedSize) {
-      alert("Please select a color and size before adding to the cart.");
+
+    if (!selectedColor || !selectedSize || !quantity) {
+      alert('Please select a color and size before adding to the cart.');
       return;
     }
     if (product) {

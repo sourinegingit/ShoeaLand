@@ -50,20 +50,14 @@ export interface Category {
     postId: string;
   };
   
-  export interface CartItem  {
+  export interface CartItem {
     productId: number;
     name: string;
+    color: string;
+    size: string;
     price: number;
-    order: number;
-    size: number[];
-    color: string[];
-    brand: string;
-    images: string[];
-    sizeselect: number;
-    colorselect: string;
     quantity: number;
-    total_price: number;
-  };
-  
+    images: string[];
+  }
 
   

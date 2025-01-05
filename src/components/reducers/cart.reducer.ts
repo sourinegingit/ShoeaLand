@@ -1,7 +1,10 @@
 // reducers/cart.reducer.ts
 export interface CartItem {
+  item:CartItem;
+  onRemove: () => void;
+  onQuantityChange: (quantity: number) => void;
   id: string;
-  title: string;
+  name: string;
   price: string;
   color: string;
   size: string;
