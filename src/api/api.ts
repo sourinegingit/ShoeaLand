@@ -1,6 +1,8 @@
-import { Address, CartItem, IProductDetail, IProductProps } from "../type";
+import { useQuery } from "react-query";
+import { Address, CartItem, IProductDetail, IProductProps, PromoCodeProps } from "../type";
 
 import Api, { httpPrivate } from "./base";
+import { addToCart } from "../components/store/cartSlice";
 
 // Updated fetchProducts function to properly handle params as an object
 export async function fetchProducts(params: { brand: string }) {
@@ -96,12 +98,23 @@ export const removeFromWishList = async (productId:number) => {
 
 // -----------cart------------
 export const addProductToCart = async (product: CartItem) => {
-  const response = await Api.post(`/cart`, product);
+  const response = await httpPrivate.post(`api/cart`, product);
   return response.data;
 };
 
+
+// اضافه کردن API برای ثبت تغییرات در دیتابیس
+export const addToCartWithApi = (product: CartItem) => async (dispatch: any) => {
+  try {
+    await addProductToCart(product);  // ارسال به API
+    dispatch(addToCart(product));  // اضافه کردن به Redux
+  } catch (error) {
+    console.error("Error adding product to cart:", error);
+  }
+};
+
 export const removeProductFromCart = async (productId: number) => {
-  const response = await Api.delete(`/cart/${productId}`);
+  const response = await httpPrivate.delete(`api/cart/${productId}`);
   return response.data;
 };
 
@@ -115,4 +128,25 @@ export const fetchAddresses = async() => {
 export const updateAddress = async (name: string, address: string) => {
   const response = await httpPrivate.put(`/api/address/${name}`, { address });
   return response.data;
+};
+
+
+// ////////////////order
+export const fetchOrders = async () => {
+  const response = await httpPrivate.get('/api/orders?status=indelivery');
+  return response.data;
+};
+
+
+// --------discount
+// api.ts
+
+export const applyDiscount = async (promoCode: string): Promise<PromoCodeProps> => {
+  try {
+    const response = await httpPrivate.get<PromoCodeProps>(`/api/discount/${promoCode}`);
+    return response.data;
+  } catch (error) {
+    // در صورت بروز خطا می‌توانیم پیام مناسبی را پرتاب کنیم
+    throw new Error(error.response?.data?.message || "An error occurred while applying the promo code");
+  }
 };

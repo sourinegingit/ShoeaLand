@@ -1,3 +1,5 @@
+import { httpPrivate } from "./api/base";
+
 export interface Category {
     id: string;
     title: string;
@@ -55,22 +57,13 @@ export interface Category {
     name: string;
     color: string;
     size: string;
-    price: number;
+    total_price: number;
     quantity: number;
     images: string[];
   }
 
   // checkout
- export  interface OrderItemProps {
-    name: string;
-    details: string;
-    price: string;
-    quantity: number;
-    imageUrl: string;
-  }
-  export interface OrderListProps {
-    items: OrderItemProps[];
-  }
+
 
   export interface AmountSummaryProps {
     amount: string;
@@ -81,4 +74,40 @@ export interface Category {
     name: string;
     address: string;
     isSelected: boolean;
+  }
+
+
+
+  // ---------------order
+  
+ export  interface OrderItemProps {
+  name: string;
+  details: string;
+  price: string;
+  quantity: number;
+  imageUrl: string;
+}
+  export interface OrderListProps {
+    items: OrderItemProps[];
+  }
+  
+
+  export interface Order {
+    userId: number;
+    status: string;
+    name: string;
+    productId: number;
+    count: number;
+    color: string;
+    size: number;
+    images: string[];
+    price: number;
+    total_price: number;
+    shippingType: string;
+    address: string;
+  }
+
+  // -------------------discount
+  export interface PromoCodeProps {
+    onDiscountApplied: (discount: number) => void;
   }

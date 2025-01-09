@@ -38,11 +38,13 @@ const cartSlice = createSlice({
       );
       if (item) {
         item.quantity = action.payload.quantity;
-        item.total_price = item.price * action.payload.quantity;
+        item.total_price = item.total_price * action.payload.quantity;
       }
     },
   },
 });
+
+
 
 export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
 

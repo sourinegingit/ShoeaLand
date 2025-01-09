@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 
 
 import {
+  addProductToCart,
   addToWishList,
   fetchProductDetail,
   removeFromWishList,
@@ -67,20 +68,31 @@ const ProductDetail = () => {
       return;
     }
     if (product) {
-      dispatch(
-        addToCart({
-          productId: product.id,
-          name: product.name,
-          price: product.price,
-          total_price: product.price * quantity,
-          color: selectedColor,
-          size: selectedSize,
-          images: product.images,
-          quantity,
+      const cartItem = {
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        total_price: product.price * quantity,
+        color: selectedColor,
+        size: selectedSize,
+        images: product.images,
+        quantity,
+      };
+  
+      // اضافه کردن به Redux
+      dispatch(addToCart(cartItem));
+  
+      // ارسال به API
+      addProductToCart(cartItem)
+        .then((data) => {
+          console.log("Product added to cart successfully:", data);
         })
-      );
+        .catch((error) => {
+          console.error("Error adding product to cart:", error);
+        });
     }
   };
+    
 
   if (isLoading) return <div>Loading product details...</div>;
   if (isError || !product) return <div>Product not found.</div>;
